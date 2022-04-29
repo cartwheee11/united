@@ -28,9 +28,9 @@ hr {
   opacity: 0.2;
 }
 
-.text-block > :first-child {
+/* .text-block > :first-child {
   margin-top: 0;
-}
+} */
 
 p,
 textarea,
