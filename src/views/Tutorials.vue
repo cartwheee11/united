@@ -30,20 +30,20 @@
     </div>
 
     <div class="controls-wrapper text-block">
-      <h3>Поиск (в разработке)</h3>
+      <h3>Фильтр (в разработке)</h3>
       <p>
-        <input type="text" placeholder="Введите тест" style="width: 100%" />
+        <input type="text" placeholder="Поиск" style="width: 100%" />
       </p>
-      <p>
-        <button
-          @click="onTagClick(tag)"
-          class="tag"
-          :class="activeTags.has(tag) ? 'active-tag' : ''"
-          v-for="tag in tags"
-          :key="tag"
+      <p class="tags">
+        <span v-for="tag in tags" :key="tag"
+          ><button
+            @click="onTagClick(tag)"
+            class="tag"
+            :class="activeTags.has(tag) ? 'active-tag' : ''"
+          >
+            {{ tag }}
+          </button></span
         >
-          {{ tag }}
-        </button>
       </p>
       <!-- <p></p> -->
       <p v-if="$store.state.user">
@@ -166,13 +166,16 @@
   }
 
   .tag {
+    white-space: nowrap;
+    height: auto;
     color: black;
     border: 1px grey solid;
     padding: 3px 10px;
     border-radius: 100px;
     margin-right: 5px;
-    display: inline-block;
+    /* display: inline-block; */
     margin-bottom: 5px;
+    /* word-break: keep-all; */
     background-color: #fff;
   }
 
@@ -201,5 +204,38 @@
   .download-more-spinner-wrapper {
     margin-top: 50px;
     padding-bottom: 5px;
+  }
+
+  @media screen and (max-width: 850px) {
+    .main-wrapper {
+      flex-wrap: wrap;
+    }
+
+    .feed-wrapper {
+      width: 100%;
+      order: 2;
+    }
+
+    .tags {
+      width: 100%;
+      overflow-x: scroll;
+      display: flex;
+    }
+
+    .tags::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tags span {
+      display: inline-block;
+    }
+
+    .controls-wrapper {
+      order: 1;
+      width: 100%;
+      border-bottom: solid #dfdfdf 1px;
+      /* margin-bottom: 20px; */
+      padding-bottom: 20px;
+    }
   }
 </style>

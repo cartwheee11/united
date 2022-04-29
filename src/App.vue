@@ -87,6 +87,13 @@
     max-width: 800px;
     margin: 0 auto;
   }
+
+  @media screen and (max-width: 850px) {
+    .container {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
 </style>
 
 <style scoped>

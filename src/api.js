@@ -1,6 +1,5 @@
 const config = require("./config.json");
 require("dotenv").config();
-console.log(process.env);
 
 //галлерея
 class Gallery {
@@ -14,7 +13,6 @@ class Gallery {
       method: "post",
     });
 
-    // console.log(ans);
     return ans;
   }
 }
@@ -43,7 +41,7 @@ export async function getGuildUser() {
 
   if (user) {
     user = JSON.parse(user);
-    // console.log(user);
+
     let result = await fetch(
       `https://discord.com/api/users/@me/guilds/${guildId}/member`,
       {
@@ -63,7 +61,6 @@ export async function getGuildUser() {
 
 //взять теги руководств
 export async function getTutorialsTags() {
-  console.log(process.env.VUE_APP_API_URL);
   let result = await fetch(
     process.env.VUE_APP_API_URL + "/publications/tutorials/tags"
   );

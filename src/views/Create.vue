@@ -162,4 +162,19 @@ script.
     margin-top: 50px;
     margin-bottom: 50px;
   }
+
+  @media screen and (max-width: 850px) {
+    .wrapper {
+      padding: 30px;
+      border: none;
+      margin-top: 20px;
+    }
+
+    .input-section {
+      display: flex;
+      gap: 10px;
+
+      flex-direction: column;
+    }
+  }
 </style>

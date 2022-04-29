@@ -3,12 +3,23 @@
     <div style="display: block" ref="wrapper" class="nav-bar-wrapper">
       <nav :class="scrollingDown ? 'nav-scroll-down' : ''" ref="nav">
         <div class="container nav-bar-inner-wrapper">
+          <button @click="onBurgerClick" class="burger">
+            <img
+              src="https://img.icons8.com/material-outlined/24/000000/menu--v1.png"
+            />
+          </button>
           <router-link to="/"
             ><img class="logo" src="../assets/united-logo.png" alt=""
           /></router-link>
-          <router-link to="/news">новости</router-link>
-          <router-link to="/tutorials">руководства</router-link>
-          <router-link to="/about">о нас</router-link>
+          <div
+            class="menu"
+            @click="onBurgerClick"
+            :class="burgerClicked ? 'burger-clicked-menu' : ''"
+          >
+            <router-link to="/news">новости</router-link>
+            <router-link to="/tutorials">руководства</router-link>
+            <router-link to="/about">о нас</router-link>
+          </div>
           <!-- <router-link to="/about">список игроков</router-link> -->
           <!-- <router-link to="/tutorials">руководства</router-link> -->
           <div v-if="user" class="user-info">
@@ -37,19 +48,16 @@
       <div
         :style="breadcrumbStyle"
         ref="breadcrumb"
+        :class="scrollingDown ? 'breadcrumb-scroll-down' : ''"
         v-if="$route.name != 'Home'"
         class="breadcrumb"
       >
         <div class="container breadcrumb-inner-wrapper">
           <span
-            ><router-link
-              :style="breadcrumbTextStyle"
-              to="/"
-              style="opacity: 0.4"
-              >Главная</router-link
+            ><router-link to="/" style="opacity: 0.4">Главная</router-link
             ><span class="arrow-right"></span
           ></span>
-          <span :style="breadcrumbTextStyle"> {{ $route.name }}</span>
+          <span> {{ $route.name }}</span>
         </div>
       </div>
     </div>
@@ -59,12 +67,7 @@
 
 <script>
   export default {
-    props: {
-      // user: {
-      //   required: true,
-      //   type: [Object, null],
-      // },
-    },
+    props: {},
 
     data() {
       return {
@@ -84,11 +87,17 @@
           fonstWeight: "100",
         },
 
+        burgerClicked: false,
+
         scrollingDown: false,
       };
     },
 
     methods: {
+      onBurgerClick() {
+        this.burgerClicked = !this.burgerClicked;
+      },
+
       logOut() {
         this.$store.dispatch("logOut");
       },
@@ -157,7 +166,9 @@
   }
 
   .breadcrumb {
-    padding: 21px 0;
+    /* padding: 21px 0; */
+    align-items: center;
+    display: flex;
     background-color: white;
     border-bottom: 1px var(--border-color) solid;
     transition: 0.2s;
@@ -165,12 +176,22 @@
 
     animation-name: "show";
     animation-duration: 0.2s;
+
+    align-content: left;
+
+    transform-origin: top;
   }
+
+  .breadcrumb-inner-wrapper {
+    width: 100%;
+  }
+
   .breadcrumb span {
     font-weight: 700;
     font-family: "Montserrat";
     font-size: 30px;
-    transition: 0.2s;
+    transition: 0.1s;
+    display: inline-block;
   }
 
   .breadcrumb a {
@@ -189,7 +210,12 @@
     image-rendering: pixelated;
   }
 
+  .burger {
+    display: none;
+  }
+
   nav {
+    z-index: 1;
     width: 100%;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -200,19 +226,22 @@
     transition: 0.2s;
   }
 
+  .menu a {
+    margin-right: 20px;
+  }
+
   .nav-scroll-down {
     /* height: 50px; */
     padding-top: 5px;
     padding-bottom: 5px;
   }
 
-  .nav-scroll-down a {
-  }
-
   .nav-bar-inner-wrapper {
+    flex-wrap: wrap;
     display: flex;
     gap: 20px;
     align-items: center;
+    z-index: 1;
   }
 
   .log-out-button {
@@ -255,6 +284,15 @@
     margin-left: 10px;
   }
 
+  .breadcrumb-scroll-down span {
+    font-size: 16px;
+  }
+
+  .breadcrumb-scroll-down .arrow-right {
+    height: 10px;
+    width: 10px;
+  }
+
   .login-button {
     border: none;
   }
@@ -266,5 +304,83 @@
 
   a:hover {
     border: none;
+  }
+
+  @media screen and (max-width: 850px) {
+    .logo {
+      display: none;
+    }
+    /* .nav-bar-inner-wrapper > .menu {
+      display: none !important;
+    } */
+
+    .menu {
+      transform: scaleY(0);
+      /* margin: 0px; */
+      /* padding: 0px; */
+      display: none;
+      transition: 0.2s;
+    }
+
+    .menu a {
+      display: block;
+      width: 100vw;
+      margin-bottom: 10px;
+    }
+
+    .burger {
+      display: block;
+      background: none;
+      /* height: 30px; */
+      height: auto;
+      padding: 0;
+    }
+
+    .burger img {
+      display: block;
+    }
+
+    .user-info a {
+      display: none;
+    }
+
+    .breadcrumb-scroll-down {
+      transform: scaleY(0);
+    }
+
+    .user-info {
+      order: 1;
+    }
+
+    .menu {
+      order: 2;
+      /* border-top: 1px #dfdfdf solid; */
+    }
+
+    .breadcrumb span {
+      font-size: 16px;
+      vertical-align: middle;
+    }
+
+    .arrow-right {
+      height: 10px;
+      width: 10px;
+    }
+
+    h1 {
+      /* margin-top: 20px; */
+    }
+
+    .breadcrumb {
+      height: 40px;
+      /* display: flex; */
+      /* transform: scaleY(0); */
+    }
+
+    .burger-clicked-menu {
+      display: block;
+      transform: scaleY(1);
+      /* height: auto; */
+    }
   }
 </style>
