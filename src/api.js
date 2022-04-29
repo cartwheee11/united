@@ -1,9 +1,11 @@
 const config = require("./config.json");
+require("dotenv").config();
+console.log(process.env);
 
 //галлерея
 class Gallery {
   constructor() {
-    this.url = config.apiUrl + "/gallery/getImages";
+    this.url = process.env.VUE_APP_API_URL + "/gallery/getImages";
   }
 
   async getImages(from, number) {
@@ -23,7 +25,7 @@ export { gallery };
 
 //аутентификация
 export async function auth(auth) {
-  let result = await fetch(config.apiUrl + "/auth", {
+  let result = await fetch(process.env.VUE_APP_API_URL + "/auth", {
     method: "post",
     body: auth,
   });
@@ -61,7 +63,10 @@ export async function getGuildUser() {
 
 //взять теги руководств
 export async function getTutorialsTags() {
-  let result = await fetch(config.apiUrl + "/publications/tutorials/tags");
+  console.log(process.env.VUE_APP_API_URL);
+  let result = await fetch(
+    process.env.VUE_APP_API_URL + "/publications/tutorials/tags"
+  );
   let body = result.json();
 
   return body;
@@ -76,7 +81,7 @@ export async function publicate({
   title,
   imageUrl,
 }) {
-  let result = await fetch(config.apiUrl + "/publications/add", {
+  let result = await fetch(process.env.VUE_APP_API_URL + "/publications/add", {
     method: "POST",
     body: JSON.stringify({
       auth,
@@ -98,10 +103,13 @@ export async function getTutorials(params = {}) {
   const size = params.size;
   const userId = params.userId;
 
-  let result = await fetch(config.apiUrl + "/publications/tutorials/get", {
-    method: "POST",
-    body: JSON.stringify({ after, size, userId }),
-  });
+  let result = await fetch(
+    process.env.VUE_APP_API_URL + "/publications/tutorials/get",
+    {
+      method: "POST",
+      body: JSON.stringify({ after, size, userId }),
+    }
+  );
   let json = await result.json();
 
   return json;
@@ -119,7 +127,7 @@ export async function getTelegraphContent(url) {
 
 export async function getTutorialById(id) {
   let response = await fetch(
-    config.apiUrl + "/publications/tutorials/getById",
+    process.env.VUE_APP_API_URL + "/publications/tutorials/getById",
     {
       method: "post",
       body: JSON.stringify({ id: id }),
@@ -131,7 +139,7 @@ export async function getTutorialById(id) {
 
 export async function getTutorialByUrl(url) {
   let response = await fetch(
-    config.apiUrl + "/publications/tutorials/getByUrl",
+    process.env.VUE_APP_API_URL + "/publications/tutorials/getByUrl",
     {
       method: "post",
       body: JSON.stringify({ url }),
