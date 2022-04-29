@@ -27,7 +27,7 @@
           </div>
           <a
             v-else
-            href="https://discord.com/api/oauth2/authorize?client_id=959075645118378085&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fauth&response_type=token&scope=identify%20guilds%20guilds.members.read"
+            :href="`https://discord.com/api/oauth2/authorize?client_id=959075645118378085&redirect_uri=http%3A%2F%2F${host}%2Fauth&response_type=token&scope=identify%20guilds%20guilds.members.read`"
             class="login-button user-info"
             ><button>войти</button></a
           >
@@ -68,6 +68,7 @@
 
     data() {
       return {
+        host: window.location.host,
         margin: 0,
         breadcrumbStyle: {},
         breadcrumbScrollDownStyle: {
