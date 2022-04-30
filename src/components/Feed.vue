@@ -19,7 +19,7 @@
               :src="item.avatar"
               alt=""
             />
-            <strong>{{ item.name.slice(0, item.name.indexOf("|")) }}</strong>
+            <strong>{{ item.name?.slice(0, item.name.indexOf("|")) }}</strong>
           </p>
 
           <!-- <p><a href="#">item.author.avatar</a> {{ item.author.name }}</p> -->
