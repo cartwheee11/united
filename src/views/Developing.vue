@@ -2,7 +2,10 @@
   <div class="container a3jksh8dkja23s2hfkasj4hg">
     <div class="inner">
       <img src="../assets/developing.gif" alt="" />
-      <p>Страница находится <br />в разработке</p>
+      <p>
+        Страница находитсяв разработке, <br />посетите
+        <router-link to="/tutorials">руководства</router-link>
+      </p>
     </div>
   </div>
 </template>
