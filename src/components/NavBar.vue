@@ -244,12 +244,6 @@
     z-index: 1;
   }
 
-  .log-out-button {
-    padding: 0;
-    background: none;
-    vertical-align: middle;
-  }
-
   .log-out-button img {
     width: 30px;
     display: block;
@@ -262,7 +256,7 @@
   }
 
   .user-info > * {
-    margin-left: 20px;
+    margin-left: 10px;
   }
 
   .avatar {
@@ -295,6 +289,7 @@
 
   .login-button {
     border: none;
+    /* margin-left: 30px; */
   }
 
   a {
@@ -304,6 +299,13 @@
 
   a:hover {
     border: none;
+  }
+
+  .log-out-button {
+    padding: 0;
+    background: none;
+    vertical-align: middle;
+    margin-left: 20px;
   }
 
   @media screen and (max-width: 850px) {

@@ -145,3 +145,14 @@ export async function getTutorialByUrl(url) {
 
   return await response.json();
 }
+
+export async function getUserByIdFromDb(id) {
+  let res = await fetch(process.env.VUE_APP_API_URL + "/users/getByIdFromDb", {
+    method: "post",
+    body: id,
+  });
+
+  const json = await res.json();
+
+  return json;
+}

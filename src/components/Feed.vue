@@ -13,6 +13,15 @@
           <img :src="item.imageUrl" alt="" />
           <h3>{{ item.title }}</h3>
           <p>{{ item.description.slice(0, 150) + "..." }}</p>
+          <p>
+            <img
+              style="width: 30px; vertical-align: middle; margin-right: 10px"
+              :src="item.avatar"
+              alt=""
+            />
+            <strong>{{ item.name.slice(0, item.name.indexOf("|")) }}</strong>
+          </p>
+
           <!-- <p><a href="#">item.author.avatar</a> {{ item.author.name }}</p> -->
         </div>
       </router-link>
