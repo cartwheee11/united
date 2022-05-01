@@ -21,6 +21,8 @@
 </script>
 
 <style>
+  @import url("./assets/base.css");
+
   @font-face {
     font-family: s2p;
     src: url("/fonts/PressStart2p-Regular.ttf");
@@ -36,16 +38,27 @@
 
   a {
     text-decoration: none;
-    border-bottom: 1px #dfdfdf solid;
+    border-bottom: 3px #dfdfdf solid;
   }
 
   a:hover {
-    border-bottom: 3px black solid;
+    border-bottom: 3px orange solid;
+  }
+
+  h1 {
+    font-weight: 800;
   }
 
   button,
   input {
     border-radius: 10px;
+    height: 50px;
+  }
+
+  input[type="text"] {
+    border: 1px solid #dfdfdf;
+    border-radius: 10px;
+    background: none;
   }
 
   button {
@@ -65,6 +78,14 @@
 
   figure {
     margin: 0;
+  }
+
+  p {
+    font-family: helvetica;
+  }
+
+  a {
+    font-family: helvetica;
   }
 
   .text-block p {
@@ -88,10 +109,28 @@
     margin: 0 auto;
   }
 
+  .swiper-button-next,
+  .swiper-button-prev,
+  .swiper-pagination-bullet-active {
+    color: orange !important;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: orange !important;
+  }
+
   @media screen and (max-width: 850px) {
     .container {
       padding-left: 15px;
       padding-right: 15px;
+    }
+
+    h1 {
+      font-size: 35px;
+    }
+
+    h2 {
+      font-size: 30px;
     }
   }
 </style>

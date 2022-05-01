@@ -30,25 +30,29 @@
     </div>
 
     <div class="controls-wrapper text-block">
-      <h3>Фильтр (в разработке)</h3>
-      <p>
-        <input type="text" placeholder="Поиск" style="width: 100%" />
-      </p>
-      <p class="tags">
-        <span v-for="tag in tags" :key="tag"
-          ><button
-            @click="onTagClick(tag)"
-            class="tag"
-            :class="activeTags.has(tag) ? 'active-tag' : ''"
+      <div class="controls">
+        <!-- <h3>Фильтр (в разработке)</h3> -->
+        <p style="margin-top: 0">
+          <input type="text" placeholder="Поиск" style="width: 100%" />
+        </p>
+        <p v-if="tags.length" class="tags">
+          <span v-for="tag in tags" :key="tag"
+            ><button
+              @click="onTagClick(tag)"
+              class="tag"
+              :class="activeTags.has(tag) ? 'active-tag' : ''"
+            >
+              {{ tag }}
+            </button></span
           >
-            {{ tag }}
-          </button></span
-        >
-      </p>
-      <!-- <p></p> -->
-      <p v-if="$store.state.user">
-        <router-link to="/create">Добавить руководство</router-link>
-      </p>
+        </p>
+        <p v-else><Spiner /><br /></p>
+
+        <!-- <p></p> -->
+        <p v-if="$store.state.user">
+          <router-link to="/create">Добавить руководство</router-link>
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -152,14 +156,14 @@
   }
 
   .feed-wrapper {
-    width: 66%;
+    width: 100%;
     /* height: 100%; */
     /* text-align: center; */
   }
 
   .add-tutorial-button {
     width: 100%;
-    border: 1px solid #d4d4d4;
+    border: 1px solid #dfdfdf;
     background: none;
   }
 
@@ -172,7 +176,14 @@
   }
 
   .controls-wrapper {
-    width: 33.3%;
+    width: 40%;
+  }
+
+  .controls {
+    /* min-height: 300px; */
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 10px;
   }
 
   .controls-wrapper h3 {
@@ -247,7 +258,6 @@
     .controls-wrapper {
       order: 1;
       width: 100%;
-      border-bottom: solid #dfdfdf 1px;
       /* margin-bottom: 20px; */
       padding-bottom: 20px;
     }

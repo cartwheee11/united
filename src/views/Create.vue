@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="readable-container wrapper text-block">
+    <div class="readable-container wrapper text-block readable-container">
       <h3 style="margin-top: 0">Добавь публикацию</h3>
       <p>
         Чтобы добавить статью, сперва надо ее написать тут
@@ -148,6 +148,7 @@ script.
     margin-bottom: 5px;
     color: black;
     background-color: #fff;
+    height: auto;
   }
 
   .active-tag {
@@ -156,11 +157,14 @@ script.
   }
 
   .wrapper {
-    border: 1px #d4d4d4 solid;
+    /* border: 1px #dfdfdf solid; */
     border-radius: 10px;
     padding: 50px;
     margin-top: 50px;
     margin-bottom: 50px;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    /* padding: 20px; */
+    border-radius: 10px;
   }
 
   @media screen and (max-width: 850px) {

@@ -5,9 +5,16 @@ let q = fauna.query;
 
 export default async function (req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
-  const { from, number } = await req.json();
-  console.log(from, number);
-  console.log(req.body);
+  req.body = JSON.stringify(req.body);
+  const size = req.body.size;
+  const after = req.body.after;
 
-  res.json("Что-то");
+  let response = await db.query(
+    q.Map(
+      q.Paginate(q.Documents(q.Collection("gallery")), { size, after }),
+      q.Lambda("elem", q.Get(q.Var("elem")))
+    )
+  );
+
+  res.json(response);
 }

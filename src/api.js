@@ -7,13 +7,13 @@ class Gallery {
     this.url = process.env.VUE_APP_API_URL + "/gallery/getImages";
   }
 
-  async getImages(from, number) {
+  async getImages(size, after) {
     let ans = await fetch(this.url, {
-      body: JSON.stringify({ from, number }),
+      body: JSON.stringify({ size, after }),
       method: "post",
     });
 
-    return ans;
+    return await ans.json();
   }
 }
 

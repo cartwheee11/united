@@ -46,7 +46,6 @@
         </div>
       </nav>
       <div
-        :style="breadcrumbStyle"
         ref="breadcrumb"
         :class="scrollingDown ? 'breadcrumb-scroll-down' : ''"
         v-if="$route.name != 'Home'"
@@ -172,7 +171,7 @@
     background-color: white;
     border-bottom: 1px var(--border-color) solid;
     transition: 0.2s;
-    height: 80px;
+    height: 50px;
 
     animation-name: "show";
     animation-duration: 0.2s;
@@ -189,7 +188,7 @@
   .breadcrumb span {
     font-weight: 700;
     font-family: "Montserrat";
-    font-size: 30px;
+    /* font-size: 30px; */
     transition: 0.1s;
     display: inline-block;
   }
@@ -282,6 +281,12 @@
     font-size: 16px;
   }
 
+  .breadcrumb-scroll-down {
+    padding: 0;
+    height: 50px;
+    transform: scaleY(0);
+  }
+
   .breadcrumb-scroll-down .arrow-right {
     height: 10px;
     width: 10px;
@@ -294,12 +299,13 @@
 
   a {
     font-weight: 600;
-    border: none;
+    /* border: none; */
+    font-family: "Montserrat";
   }
 
-  a:hover {
+  /* a:hover {
     border: none;
-  }
+  } */
 
   .log-out-button {
     padding: 0;
