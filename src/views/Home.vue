@@ -3,7 +3,7 @@
     <div class="container title-section">
       <p class="emoji">{{ emojis[currentEmoji] }}</p>
       <h1>
-        Unided
+        United
         <!-- {{ emojis[(currentEmoji + 1) % emojis.length] }} -->
       </h1>
       <p class="subtitle">
@@ -51,9 +51,20 @@
         <h2><router-link to="/players">Участники</router-link></h2>
         <p>
           <swiper
+            class="players-swiper"
             :modules="modules"
             :grab-cursor="true"
-            :slides-per-view="2.6"
+            :slides-per-view="
+              (() => {
+                if (windowWidth > 1000) {
+                  return 2.5;
+                } else if (windowWidth > 600) {
+                  return 1.6;
+                } else {
+                  return 1.2;
+                }
+              })()
+            "
             :space-between="30"
             :pagination="false"
             :navigation="true"
@@ -72,20 +83,38 @@
                 "
                 alt=""
               />
-              <h3>{{ player.guildProfile.nick }}</h3>
-              <div class="roles">
-                <template
-                  v-for="role in player.guildProfile.roles.filter(
-                    (elem) => roles[elem]
-                  )"
-                  :key="role"
-                >
-                  <span
-                    class="role"
-                    :style="{ color: 'var(--role-' + role + ')' }"
-                    >{{ roles[role].name }}</span
+              <div class="player-container-text">
+                <h3>
+                  {{
+                    player.guildProfile.nick.slice(
+                      0,
+                      player.guildProfile.nick.indexOf("|")
+                    )
+                  }}
+                </h3>
+                <strong>
+                  {{
+                    "Вступил " +
+                    player.guildProfile["joined_at"].slice(
+                      0,
+                      player.guildProfile["joined_at"].indexOf("T")
+                    )
+                  }}
+                </strong>
+                <div class="roles">
+                  <template
+                    v-for="role in player.guildProfile.roles.filter(
+                      (elem) => roles[elem]
+                    )"
+                    :key="role"
                   >
-                </template>
+                    <span
+                      class="role"
+                      :style="{ color: 'var(--role-' + role + ')' }"
+                      >{{ roles[role].name }}</span
+                    >
+                  </template>
+                </div>
               </div>
               <!-- <img class="slider-image" :src="image" alt="" /> -->
             </swiper-slide>
@@ -118,6 +147,7 @@
         modules: [Pagination, EffectCoverflow, Autoplay, Navigation],
         user: null,
         players: [],
+        windowWidth: window.innerWidth,
         gallery: [
           "https://cdn.discordapp.com/attachments/886994065906892841/947783953622917130/2022-02-27_13.51.56.png",
           "https://cdn.discordapp.com/attachments/886994065906892841/950249420207829012/HishipyOnBike.png",
@@ -153,6 +183,7 @@
     },
 
     mounted() {
+      window.addEventListener("resize", this.onResize);
       // this.roles = require('./config.json')
       this.startHeartAnimation();
       api.getUsersFromDb().then((res) => {
@@ -165,6 +196,11 @@
     },
 
     methods: {
+      onResize() {
+        this.windowWidth = window.innerWidth;
+        console.log(window.innerWidth);
+      },
+
       startHeartAnimation() {
         setInterval(() => {
           this.currentEmoji = Math.floor(
@@ -177,6 +213,10 @@
 </script>
 
 <style scoped>
+  .players-swiper {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
   .swiper-slide {
     /* display: flex; */
     /* vertical-align: middle; */
@@ -246,17 +286,25 @@
   .player-container {
     padding: 20px;
     border: solid #dfdfdf 1px;
-    border-radius: 10000px;
+    border-radius: 20px;
+    transition: 0.2s;
+  }
+
+  .player-container:hover {
+    transform: translateY(-15px);
+  }
+
+  .player-container-text {
+    display: inline;
   }
 
   .player-container img {
-    float: left;
     margin-right: 20px;
     border-radius: 1000px;
   }
 
   .player-container h3 {
-    margin-top: 0;
+    /* margin-top: ; */
   }
 
   .role {
@@ -273,6 +321,17 @@
 
     .subtitle {
       font-size: 20px;
+    }
+
+    .players-section {
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .player-container img {
+      width: 70px;
     }
   }
 </style>

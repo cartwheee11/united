@@ -334,6 +334,7 @@
       display: block;
       width: 100vw;
       margin-bottom: 10px;
+      border-bottom: none;
     }
 
     .burger {
