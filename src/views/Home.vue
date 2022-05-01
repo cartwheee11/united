@@ -27,10 +27,8 @@
         :slides-per-view="1.2"
         :centered-slides="true"
         :space-between="1"
-        @swiper="onSwiper"
         :pagination="{ clickable: true }"
         :navigation="true"
-        @slideChange="onSlideChange"
         :coverflow-effect="{
           rotate: 0,
           depth: 300,
@@ -50,14 +48,57 @@
 
     <div class="players-section">
       <div class="container">
-        <h2>Участники</h2>
+        <h2><router-link to="/players">Участники</router-link></h2>
+        <p>
+          <swiper
+            :modules="modules"
+            :grab-cursor="true"
+            :slides-per-view="2.6"
+            :space-between="30"
+            :pagination="false"
+            :navigation="true"
+          >
+            <swiper-slide
+              class="player-container"
+              v-for="player in players"
+              :key="player"
+            >
+              <img
+                :src="
+                  'https://cdn.discordapp.com/avatars/' +
+                  player.profile.id +
+                  '/' +
+                  player.profile.avatar
+                "
+                alt=""
+              />
+              <h3>{{ player.guildProfile.nick }}</h3>
+              <div class="roles">
+                <template
+                  v-for="role in player.guildProfile.roles.filter(
+                    (elem) => roles[elem]
+                  )"
+                  :key="role"
+                >
+                  <span
+                    class="role"
+                    :style="{ color: 'var(--role-' + role + ')' }"
+                    >{{ roles[role].name }}</span
+                  >
+                </template>
+              </div>
+              <!-- <img class="slider-image" :src="image" alt="" /> -->
+            </swiper-slide>
+          </swiper>
+        </p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  // import * as api from "../api.js";
+  const config = require("../config.json");
+  import * as api from "../api.js";
   import { Pagination, EffectCoverflow, Autoplay, Navigation } from "swiper";
   // Import Swiper Vue.js components
   import { Swiper, SwiperSlide } from "swiper/vue/swiper-vue";
@@ -76,6 +117,7 @@
         slide: [],
         modules: [Pagination, EffectCoverflow, Autoplay, Navigation],
         user: null,
+        players: [],
         gallery: [
           "https://cdn.discordapp.com/attachments/886994065906892841/947783953622917130/2022-02-27_13.51.56.png",
           "https://cdn.discordapp.com/attachments/886994065906892841/950249420207829012/HishipyOnBike.png",
@@ -85,6 +127,7 @@
           "https://cdn.discordapp.com/attachments/886994065906892841/938948058048266251/unknown.png",
           "https://cdn.discordapp.com/attachments/886994065906892841/929860182798913546/unknown.png",
         ],
+        roles: config.roles,
         emojis: [
           "🥰",
           "💣",
@@ -110,8 +153,11 @@
     },
 
     mounted() {
+      // this.roles = require('./config.json')
       this.startHeartAnimation();
-
+      api.getUsersFromDb().then((res) => {
+        this.players = res.data.map((elem) => elem.data);
+      });
       // api.gallery.getImages().then((res) => {
       // this.gallery = res.data.map((elem) => elem.data);
       // console.log(this.gallery);
@@ -190,6 +236,32 @@
   .gallery-section {
     margin-top: 50px;
     margin-bottom: 50px;
+  }
+
+  .players-section {
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
+
+  .player-container {
+    padding: 20px;
+    border: solid #dfdfdf 1px;
+    border-radius: 10000px;
+  }
+
+  .player-container img {
+    float: left;
+    margin-right: 20px;
+    border-radius: 1000px;
+  }
+
+  .player-container h3 {
+    margin-top: 0;
+  }
+
+  .role {
+    font-family: "Montserrat";
+    font-weight: 600;
   }
 
   @media screen and (max-width: 850px) {

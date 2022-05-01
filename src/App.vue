@@ -22,7 +22,7 @@
 
 <style>
   @import url("./assets/base.css");
-
+  @import url("./assets/roles.css");
   @font-face {
     font-family: s2p;
     src: url("/fonts/PressStart2p-Regular.ttf");
@@ -85,7 +85,7 @@
   }
 
   a {
-    font-family: helvetica;
+    /* font-family: helvetica; */
   }
 
   .text-block p {

@@ -6,12 +6,13 @@ import Auth from "../views/Auth.vue";
 import Tutorials from "../views/Tutorials.vue";
 import Create from "../views/Create.vue";
 import Developing from "../views/Developing.vue";
+import Home from "../views/Home";
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: Developing,
+    component: Home,
   },
   {
     path: "/tutorials",

@@ -156,3 +156,12 @@ export async function getUserByIdFromDb(id) {
 
   return json;
 }
+
+export async function getUsersFromDb(size, after) {
+  let res = await fetch(process.env.VUE_APP_API_URL + "/users/getFromDb", {
+    method: "post",
+    body: JSON.stringify({ size, after }),
+  });
+
+  return await res.json();
+}
