@@ -25,6 +25,11 @@ const routes = [
     component: Auth,
   },
   {
+    path: "/Players",
+    name: "Участники",
+    component: Developing,
+  },
+  {
     path: "/About",
     name: "О гильдии",
     component: Developing,

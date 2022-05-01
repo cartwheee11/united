@@ -24,11 +24,11 @@
         :modules="modules"
         :effect="'coverflow'"
         :grab-cursor="true"
-        :slides-per-view="1.2"
+        :slides-per-view="windowWidth > 850 ? 1.3 : 1.1"
         :centered-slides="true"
         :space-between="1"
-        :pagination="{ clickable: true }"
-        :navigation="true"
+        :pagination="windowWidth > 850 ? { clickable: true } : false"
+        :navigation="windowWidth < 850 ? false : true"
         :coverflow-effect="{
           rotate: 0,
           depth: 300,
@@ -56,7 +56,7 @@
             :grab-cursor="true"
             :slides-per-view="
               (() => {
-                if (windowWidth > 1000) {
+                if (windowWidth > 800) {
                   return 2.5;
                 } else if (windowWidth > 600) {
                   return 1.6;
@@ -65,7 +65,7 @@
                 }
               })()
             "
-            :space-between="30"
+            :space-between="20"
             :pagination="false"
             :navigation="true"
           >
@@ -128,12 +128,19 @@
 <script>
   const config = require("../config.json");
   import * as api from "../api.js";
-  import { Pagination, EffectCoverflow, Autoplay, Navigation } from "swiper";
+  import {
+    Pagination,
+    EffectCoverflow,
+    Autoplay,
+    Navigation,
+    Scrollbar,
+  } from "swiper";
   // Import Swiper Vue.js components
   import { Swiper, SwiperSlide } from "swiper/vue/swiper-vue";
 
   // Import Swiper styles
   import "swiper/swiper.min.css";
+  import "swiper/modules/scrollbar/scrollbar.min.css";
   import "swiper/modules/pagination/pagination.min.css";
   import "swiper/modules/navigation/navigation.min.css";
   export default {
@@ -144,7 +151,7 @@
     data() {
       return {
         slide: [],
-        modules: [Pagination, EffectCoverflow, Autoplay, Navigation],
+        modules: [Pagination, EffectCoverflow, Autoplay, Navigation, Scrollbar],
         user: null,
         players: [],
         windowWidth: window.innerWidth,
@@ -264,6 +271,10 @@
     transition: 0.2s;
   }
 
+  .gallery img {
+    border-radius: 20px;
+  }
+
   .slider-image {
     border-radius: 10px;
   }
@@ -279,8 +290,13 @@
   }
 
   .players-section {
+    overflow: hidden;
     margin-top: 100px;
     margin-bottom: 100px;
+  }
+
+  .players-section h2 {
+    margin-top: 0;
   }
 
   .player-container {
@@ -291,7 +307,7 @@
   }
 
   .player-container:hover {
-    transform: translateY(-15px);
+    /* transform: translateY(-15px); */
   }
 
   .player-container-text {
@@ -343,6 +359,10 @@
     /* transform: scale(2) !important; */
   }
 
+  .players-section .swiper {
+    /* overflow: visible; */
+  }
+
   .swiper-wrapper {
     align-items: center;
   }
@@ -351,5 +371,27 @@
     /* transition: 0.2s !important; */
   }
   .swiper-slide-active {
+  }
+
+  .players-section .swiper-button-next,
+  .players-section .swiper-button-prev {
+    height: 100%;
+    top: 0;
+    width: 50px;
+    background: white;
+    box-shadow: 0 0 100px 100px white;
+    transition: 0.2s;
+  }
+
+  .players-section .swiper-button-disabled {
+    opacity: 0;
+  }
+
+  @media screen and (max-width: 1000px) {
+    .players-section .swiper-button-next,
+    .players-section .swiper-button-prev {
+      display: none;
+      /* transition: 0.2s; */
+    }
   }
 </style>
