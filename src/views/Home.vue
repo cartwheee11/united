@@ -24,7 +24,7 @@
         :modules="modules"
         :effect="'coverflow'"
         :grab-cursor="true"
-        :slides-per-view="windowWidth > 850 ? 1.3 : 1.1"
+        :slides-per-view="windowWidth > 850 ? 1.5 : 1.1"
         :centered-slides="true"
         :space-between="1"
         :pagination="windowWidth > 850 ? { clickable: true } : false"
