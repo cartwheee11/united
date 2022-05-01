@@ -46,7 +46,7 @@
             </button></span
           >
         </p>
-        <p v-else><Spiner /><br /></p>
+        <!-- <p v-else><Spiner /><br /></p> -->
 
         <!-- <p></p> -->
         <p v-if="$store.state.user">
@@ -147,7 +147,7 @@
 <style scoped>
   .main-wrapper {
     display: flex;
-    gap: 30px;
+    gap: 20px;
     margin-top: 50px;
     margin-bottom: 50px;
     min-height: 100%;
@@ -234,11 +234,17 @@
   @media screen and (max-width: 850px) {
     .main-wrapper {
       flex-wrap: wrap;
+      margin-top: 20px;
     }
 
     .feed-wrapper {
       width: 100%;
       order: 2;
+      margin-top: 0;
+    }
+
+    .controls-wrapper {
+      padding-bottom: 0 !important;
     }
 
     .tags {
