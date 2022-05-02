@@ -33,7 +33,7 @@
           rotate: 0,
           depth: 300,
           modifier: 3,
-          slideShadows: true,
+          slideShadows: false,
         }"
       >
         <swiper-slide
