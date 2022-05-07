@@ -50,121 +50,125 @@
       <div class="players-section">
         <div class="container">
           <h2><router-link to="/players">Участники</router-link></h2>
-          <p>
-            <swiper
-              class="players-swiper"
-              :modules="modules"
-              :grab-cursor="true"
-              :slides-per-view="
-                (() => {
-                  if (windowWidth > 800) {
-                    return 2.5;
-                  } else if (windowWidth > 600) {
-                    return 1.6;
-                  } else {
-                    return 1.2;
-                  }
-                })()
-              "
-              :space-between="20"
-              :pagination="false"
-              :navigation="true"
+          <div v-if="!players.length" class="slider-loading">
+            <Spinner />
+          </div>
+          <swiper
+            v-else
+            class="players-swiper"
+            :modules="modules"
+            :grab-cursor="true"
+            :slides-per-view="
+              (() => {
+                if (windowWidth > 800) {
+                  return 2.5;
+                } else if (windowWidth > 600) {
+                  return 1.6;
+                } else {
+                  return 1.2;
+                }
+              })()
+            "
+            :space-between="20"
+            :pagination="false"
+            :navigation="true"
+          >
+            <swiper-slide
+              class="player-container"
+              v-for="player in players"
+              :key="player"
             >
-              <swiper-slide
-                class="player-container"
-                v-for="player in players"
-                :key="player"
-              >
-                <img width="128" :src="player.profile.avatar" alt="" />
-                <div class="player-container-text">
-                  <h3>
-                    {{
-                      player.guildProfile.nick.slice(
-                        0,
-                        player.guildProfile.nick.indexOf("|")
-                      )
-                    }}
-                  </h3>
-                  <span>
-                    {{
-                      "Вступил " +
-                      player.guildProfile["joined_at"].slice(
-                        0,
-                        player.guildProfile["joined_at"].indexOf("T")
-                      )
-                    }}
-                  </span>
-                  <div class="roles">
-                    <template
-                      v-for="role in player.guildProfile.roles.filter(
-                        (elem) => roles[elem]
-                      )"
-                      :key="role"
-                    >
-                      <span
-                        :style="{
-                          background: 'var(--role-' + role + ')',
-                          display: 'inline-block',
-                          width: '10px',
-                          height: '10px',
-                          borderRadius: '10px',
-                          marginRight: '10px',
-                        }"
-                      ></span
-                      ><span class="role">{{ roles[role].name }}</span>
-                    </template>
-                  </div>
+              <img width="128" :src="player.profile.avatar" alt="" />
+              <div class="player-container-text">
+                <h3>
+                  {{
+                    player.guildProfile.nick.slice(
+                      0,
+                      player.guildProfile.nick.indexOf("|")
+                    )
+                  }}
+                </h3>
+                <span>
+                  {{
+                    "Вступил " +
+                    player.guildProfile["joined_at"].slice(
+                      0,
+                      player.guildProfile["joined_at"].indexOf("T")
+                    )
+                  }}
+                </span>
+                <div class="roles">
+                  <template
+                    v-for="role in player.guildProfile.roles.filter(
+                      (elem) => roles[elem]
+                    )"
+                    :key="role"
+                  >
+                    <span
+                      :style="{
+                        background: 'var(--role-' + role + ')',
+                        display: 'inline-block',
+                        width: '10px',
+                        height: '10px',
+                        borderRadius: '10px',
+                        marginRight: '10px',
+                      }"
+                    ></span
+                    ><span class="role">{{ roles[role].name }}</span>
+                  </template>
                 </div>
-                <!-- <img class="slider-image" :src="image" alt="" /> -->
-              </swiper-slide>
-            </swiper>
-          </p>
+              </div>
+              <!-- <img class="slider-image" :src="image" alt="" /> -->
+            </swiper-slide>
+          </swiper>
         </div>
       </div>
 
       <div class="tutorials-section">
         <div class="container">
           <h2><router-link to="/tutorials">Руководства</router-link></h2>
-          <p>
-            <swiper
-              class="tutorials-swiper"
-              :modules="modules"
-              :grab-cursor="true"
-              :slides-per-view="
-                (() => {
-                  if (windowWidth > 800) {
-                    return 2.5;
-                  } else if (windowWidth > 600) {
-                    return 1.6;
-                  } else {
-                    return 1.2;
-                  }
-                })()
-              "
-              :space-between="20"
-              :pagination="false"
-              :navigation="true"
+          <div v-if="!tutorials.length" class="slider-loading">
+            <Spinner />
+          </div>
+          <swiper
+            v-else
+            class="tutorials-swiper"
+            :modules="modules"
+            :grab-cursor="true"
+            :slides-per-view="
+              (() => {
+                if (windowWidth > 800) {
+                  return 2.5;
+                } else if (windowWidth > 600) {
+                  return 1.6;
+                } else {
+                  return 1.2;
+                }
+              })()
+            "
+            :space-between="20"
+            :pagination="false"
+            :navigation="true"
+          >
+            <swiper-slide
+              class="tutorial-container"
+              v-for="one in tutorials.slice(0, 5)"
+              :key="one"
             >
-              <swiper-slide
-                class="tutorial-container"
-                v-for="one in tutorials.slice(0, 5)"
-                :key="one"
+              <router-link
+                style="border: none"
+                :to="
+                  '/tutorials' +
+                  one.contentUrl.replace('https://telegra.ph', '')
+                "
               >
-                <router-link
-                  style="border: none"
-                  :to="
-                    '/tutorials' +
-                    one.contentUrl.replace('https://telegra.ph', '')
-                  "
-                >
-                  <img class="tutorial-iamge" :src="one.imageUrl" alt="" />
-                  <h3>{{ one.title }}</h3>
-                  <p>{{ one.description.slice(0, 101) }}...</p>
-                </router-link>
-                <!-- <img class="slider-image" :src="image" alt="" /> -->
-              </swiper-slide>
-            </swiper>
-          </p>
+                <img class="tutorial-iamge" :src="one.imageUrl" alt="" />
+                <h3>{{ one.title }}</h3>
+                <p>{{ one.description.slice(0, 101) }}...</p>
+              </router-link>
+              <!-- <img class="slider-image" :src="image" alt="" /> -->
+            </swiper-slide>
+          </swiper>
         </div>
       </div>
     </div>
@@ -174,6 +178,7 @@
 <script>
   const config = require("../config.json");
   import * as api from "../api.js";
+  import Spinner from "../components/Spiner.vue";
   import {
     Pagination,
     EffectCoverflow,
@@ -192,7 +197,7 @@
   export default {
     name: "Home",
 
-    components: { Swiper, SwiperSlide },
+    components: { Swiper, SwiperSlide, Spinner },
 
     data() {
       return {
@@ -277,6 +282,14 @@
   .main-wrapper {
     padding-bottom: 100px;
   }
+
+  .slider-loading {
+    height: 250px;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+    border-radius: 10px;
+  }
+
   .players-swiper {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -347,7 +360,7 @@
   }
 
   .players-section {
-    overflow: hidden;
+    /* overflow: hidden; */
     margin-top: 100px;
     margin-bottom: 100px;
   }
