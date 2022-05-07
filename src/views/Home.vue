@@ -294,6 +294,12 @@
     padding-top: 20px;
     padding-bottom: 20px;
   }
+
+  .tutorials-swiper {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
   .swiper-slide {
     /* display: flex; */
     /* vertical-align: middle; */
