@@ -1,7 +1,8 @@
 const fetch = require("node-fetch");
 const config = require("./config.json");
 const fauna = require("faunadb");
-let db = require("./getDb.js");
+const db = require("./getDb.js");
+const Jimp = require("jimp");
 
 const q = fauna.query;
 
@@ -33,6 +34,12 @@ export default async function (req, res) {
   );
 
   let guildProfile = await result.json();
+  let img = await Jimp.read(
+    `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}`
+  );
+
+  let base64 = await img.getBase64Async("image/png");
+  user.avatar = base64;
   user.guilds = guilds;
   user.guildProfile = guildProfile;
 

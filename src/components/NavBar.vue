@@ -24,12 +24,8 @@
           <!-- <router-link to="/tutorials">руководства</router-link> -->
           <div v-if="user" class="user-info">
             <!-- {{ JSON.parse(window.localStorage.getItem("user")) }} -->
-            <img
-              class="avatar"
-              :src="`https://cdn.discordapp.com/avatars/${$store.state.user.id}/${$store.state.user.avatar}`"
-              alt=""
-            />
-            <a href="#">{{ $store.state.user.guildProfile.nick }}</a>
+            <img class="avatar" :src="`${$store.state.user.avatar}`" alt="" />
+            <a href="#">{{ $store.state.user.guildProfile?.nick }}</a>
             <button class="log-out-button" @click="logOut">
               <img
                 src="https://img.icons8.com/fluency-systems-filled/48/000000/exit.png"

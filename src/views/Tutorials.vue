@@ -128,11 +128,7 @@
                 let user = await api.getUserByIdFromDb(elem.author);
                 user = user.data[0].data;
                 elem.name = user.guildProfile.nick;
-                elem.avatar =
-                  "https://cdn.discordapp.com/avatars/" +
-                  user.profile.id +
-                  "/" +
-                  user.profile.avatar;
+                elem.avatar = user.profile.avatar;
                 // elem.authorId = user.profile.id;
               });
             } else {

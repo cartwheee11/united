@@ -1,125 +1,171 @@
 <template>
   <div>
-    <div class="container title-section">
-      <p class="emoji">{{ emojis[currentEmoji] }}</p>
-      <h1>
-        United
-        <!-- {{ emojis[(currentEmoji + 1) % emojis.length] }} -->
-      </h1>
-      <p class="subtitle">
-        №1 гильдия сервера
-        <span
-          ><a style="color: white" href="http://restartcraft.ru"
-            >Restart Craft</a
-          ></span
-        ><br />
-        Вступай в наши ряды, если готов :з
-      </p>
-      <br />
-      <p><button>Заявка</button></p>
-    </div>
-
-    <div class="gallery-section">
-      <swiper
-        :modules="modules"
-        :effect="'coverflow'"
-        :grab-cursor="true"
-        :slides-per-view="windowWidth > 850 ? 1.5 : 1.1"
-        :centered-slides="true"
-        :space-between="1"
-        :pagination="windowWidth > 850 ? { clickable: true } : false"
-        :navigation="windowWidth < 850 ? false : true"
-        :coverflow-effect="{
-          rotate: 0,
-          depth: 300,
-          modifier: 3,
-          slideShadows: false,
-        }"
-      >
-        <swiper-slide
-          class="swiper-slide"
-          v-for="image in gallery"
-          :key="image"
-        >
-          <img class="slider-image" :src="image" alt="" />
-        </swiper-slide>
-      </swiper>
-    </div>
-
-    <div class="players-section">
-      <div class="container">
-        <h2><router-link to="/players">Участники</router-link></h2>
-        <p>
-          <swiper
-            class="players-swiper"
-            :modules="modules"
-            :grab-cursor="true"
-            :slides-per-view="
-              (() => {
-                if (windowWidth > 800) {
-                  return 2.5;
-                } else if (windowWidth > 600) {
-                  return 1.6;
-                } else {
-                  return 1.2;
-                }
-              })()
-            "
-            :space-between="20"
-            :pagination="false"
-            :navigation="true"
-          >
-            <swiper-slide
-              class="player-container"
-              v-for="player in players"
-              :key="player"
-            >
-              <img
-                :src="
-                  'https://cdn.discordapp.com/avatars/' +
-                  player.profile.id +
-                  '/' +
-                  player.profile.avatar
-                "
-                alt=""
-              />
-              <div class="player-container-text">
-                <h3>
-                  {{
-                    player.guildProfile.nick.slice(
-                      0,
-                      player.guildProfile.nick.indexOf("|")
-                    )
-                  }}
-                </h3>
-                <strong>
-                  {{
-                    "Вступил " +
-                    player.guildProfile["joined_at"].slice(
-                      0,
-                      player.guildProfile["joined_at"].indexOf("T")
-                    )
-                  }}
-                </strong>
-                <div class="roles">
-                  <template
-                    v-for="role in player.guildProfile.roles.filter(
-                      (elem) => roles[elem]
-                    )"
-                    :key="role"
-                  >
-                    <span
-                      class="role"
-                      :style="{ color: 'var(--role-' + role + ')' }"
-                      >{{ roles[role].name }}</span
-                    >
-                  </template>
-                </div>
-              </div>
-              <!-- <img class="slider-image" :src="image" alt="" /> -->
-            </swiper-slide>
-          </swiper>
+    <div class="main-wrapper">
+      <div class="container title-section">
+        <p class="emoji">{{ emojis[currentEmoji] }}</p>
+        <h1>
+          United
+          <!-- {{ emojis[(currentEmoji + 1) % emojis.length] }} -->
+        </h1>
+        <p class="subtitle">
+          №1 гильдия сервера
+          <span
+            ><a style="color: white" href="http://restartcraft.ru"
+              >Restart Craft</a
+            ></span
+          ><br />
+          Вступай в наши ряды, если готов :з
         </p>
+        <br />
+        <p><button>Заявка</button></p>
+      </div>
+
+      <div class="gallery-section">
+        <swiper
+          :modules="modules"
+          :effect="'coverflow'"
+          :grab-cursor="true"
+          :slides-per-view="windowWidth > 850 ? 1.5 : 1.1"
+          :centered-slides="true"
+          :space-between="1"
+          :pagination="windowWidth > 850 ? { clickable: true } : false"
+          :navigation="windowWidth < 850 ? false : true"
+          :coverflow-effect="{
+            rotate: 0,
+            depth: 300,
+            modifier: 3,
+            slideShadows: false,
+          }"
+        >
+          <swiper-slide
+            class="swiper-slide"
+            v-for="image in gallery"
+            :key="image"
+          >
+            <img class="slider-image" :src="image" alt="" />
+          </swiper-slide>
+        </swiper>
+      </div>
+
+      <div class="players-section">
+        <div class="container">
+          <h2><router-link to="/players">Участники</router-link></h2>
+          <p>
+            <swiper
+              class="players-swiper"
+              :modules="modules"
+              :grab-cursor="true"
+              :slides-per-view="
+                (() => {
+                  if (windowWidth > 800) {
+                    return 2.5;
+                  } else if (windowWidth > 600) {
+                    return 1.6;
+                  } else {
+                    return 1.2;
+                  }
+                })()
+              "
+              :space-between="20"
+              :pagination="false"
+              :navigation="true"
+            >
+              <swiper-slide
+                class="player-container"
+                v-for="player in players"
+                :key="player"
+              >
+                <img width="128" :src="player.profile.avatar" alt="" />
+                <div class="player-container-text">
+                  <h3>
+                    {{
+                      player.guildProfile.nick.slice(
+                        0,
+                        player.guildProfile.nick.indexOf("|")
+                      )
+                    }}
+                  </h3>
+                  <strong>
+                    {{
+                      "Вступил " +
+                      player.guildProfile["joined_at"].slice(
+                        0,
+                        player.guildProfile["joined_at"].indexOf("T")
+                      )
+                    }}
+                  </strong>
+                  <div class="roles">
+                    <template
+                      v-for="role in player.guildProfile.roles.filter(
+                        (elem) => roles[elem]
+                      )"
+                      :key="role"
+                    >
+                      <span
+                        :style="{
+                          background: 'var(--role-' + role + ')',
+                          display: 'inline-block',
+                          width: '10px',
+                          height: '10px',
+                          borderRadius: '10px',
+                          marginRight: '10px',
+                        }"
+                      ></span
+                      ><span class="role">{{ roles[role].name }}</span>
+                    </template>
+                  </div>
+                </div>
+                <!-- <img class="slider-image" :src="image" alt="" /> -->
+              </swiper-slide>
+            </swiper>
+          </p>
+        </div>
+      </div>
+
+      <div class="tutorials-section">
+        <div class="container">
+          <h2><router-link to="/tutorials">Руководства</router-link></h2>
+          <p>
+            <swiper
+              class="tutorials-swiper"
+              :modules="modules"
+              :grab-cursor="true"
+              :slides-per-view="
+                (() => {
+                  if (windowWidth > 800) {
+                    return 2.5;
+                  } else if (windowWidth > 600) {
+                    return 1.6;
+                  } else {
+                    return 1.2;
+                  }
+                })()
+              "
+              :space-between="20"
+              :pagination="false"
+              :navigation="true"
+            >
+              <swiper-slide
+                class="tutorial-container"
+                v-for="one in tutorials.slice(0, 5)"
+                :key="one"
+              >
+                <router-link
+                  style="border: none"
+                  :to="
+                    '/tutorials' +
+                    one.contentUrl.replace('https://telegra.ph', '')
+                  "
+                >
+                  <img class="tutorial-iamge" :src="one.imageUrl" alt="" />
+                  <h3>{{ one.title }}</h3>
+                  <p>{{ one.description.slice(0, 101) }}...</p>
+                </router-link>
+                <!-- <img class="slider-image" :src="image" alt="" /> -->
+              </swiper-slide>
+            </swiper>
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -165,6 +211,7 @@
           "https://cdn.discordapp.com/attachments/886994065906892841/929860182798913546/unknown.png",
         ],
         roles: config.roles,
+        tutorials: [],
         emojis: [
           "🥰",
           "💣",
@@ -196,6 +243,13 @@
       api.getUsersFromDb().then((res) => {
         this.players = res.data.map((elem) => elem.data);
       });
+
+      api
+        .getTutorials({ userId: this.$store.state.user?.id })
+        .then(async (res) => {
+          this.tutorials = res.data.map((elem) => elem.data);
+          console.log(this.tutorials);
+        });
       // api.gallery.getImages().then((res) => {
       // this.gallery = res.data.map((elem) => elem.data);
       // console.log(this.gallery);
@@ -220,6 +274,9 @@
 </script>
 
 <style scoped>
+  .main-wrapper {
+    padding-bottom: 100px;
+  }
   .players-swiper {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -326,6 +383,12 @@
   .role {
     font-family: "Montserrat";
     font-weight: 600;
+  }
+
+  .tutorial-iamge {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 10px;
   }
 
   @media screen and (max-width: 850px) {

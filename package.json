@@ -12,6 +12,7 @@
     "@wyhaya/vue-slide": "^1.0.2",
     "core-js": "^3.6.5",
     "faunadb": "^4.5.4",
+    "jimp": "^0.16.1",
     "node-fetch": "^2.6.7",
     "swiper": "^8.1.4",
     "vue": "^3.0.0",
