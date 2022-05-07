@@ -80,7 +80,8 @@
     margin: 0;
   }
 
-  p {
+  p,
+  span {
     font-family: helvetica;
   }
 

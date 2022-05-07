@@ -85,7 +85,7 @@
                       )
                     }}
                   </h3>
-                  <strong>
+                  <span>
                     {{
                       "Вступил " +
                       player.guildProfile["joined_at"].slice(
@@ -93,7 +93,7 @@
                         player.guildProfile["joined_at"].indexOf("T")
                       )
                     }}
-                  </strong>
+                  </span>
                   <div class="roles">
                     <template
                       v-for="role in player.guildProfile.roles.filter(
@@ -381,8 +381,8 @@
   }
 
   .role {
-    font-family: "Montserrat";
-    font-weight: 600;
+    /* font-family: "Montserrat"; */
+    /* font-weight: 600; */
   }
 
   .tutorial-iamge {
