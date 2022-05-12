@@ -162,7 +162,16 @@
                   one.contentUrl.replace('https://telegra.ph', '')
                 "
               >
-                <img class="tutorial-iamge" :src="one.imageUrl" alt="" />
+                <div
+                  class="tutorial-image"
+                  :style="{
+                    backgroundImage: `url(${one.imageUrl})`,
+                    backgroundSize: 'cover',
+                    height: '320px',
+                    width: '100%',
+                  }"
+                ></div>
+                <!-- <img class="tutorial-iamge" :src="one.imageUrl" alt="" /> -->
                 <h3>{{ one.title }}</h3>
                 <p>{{ one.description.slice(0, 101) }}...</p>
               </router-link>
@@ -404,10 +413,11 @@
     /* font-weight: 600; */
   }
 
-  .tutorial-iamge {
-    width: 100%;
+  .tutorial-image {
+    /* height: 400px; */
+    /* width: 100%; */
+    /* width: auto; */
     border-radius: 10px;
-    margin-top: 10px;
   }
 
   @media screen and (max-width: 850px) {
@@ -445,7 +455,7 @@
     /* overflow: visible; */
   }
 
-  .swiper-wrapper {
+  .gallery-section .swiper-wrapper {
     align-items: center;
   }
 
