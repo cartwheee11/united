@@ -104,3 +104,10 @@
     margin-left: 0;
   }
 </style>
+
+<style>
+  figure img {
+    border: 1px solid #dfdfdf;
+    border-radius: 10px;
+  }
+</style>
