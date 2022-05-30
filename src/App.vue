@@ -33,6 +33,7 @@
   }
 
   body {
+    background-color: #fff;
     min-height: 100vh;
   }
 
