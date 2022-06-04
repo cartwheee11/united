@@ -14,6 +14,12 @@ const routes = [
     name: "Home",
     component: Home,
   },
+
+  {
+    path: "/gallery",
+    name: "Галерея",
+    component: Developing,
+  },
   {
     path: "/tutorials",
     name: "Руководства",

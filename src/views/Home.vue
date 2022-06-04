@@ -2,12 +2,14 @@
   <div>
     <div class="main-wrapper">
       <div class="container title-section">
-        <p class="emoji">{{ emojis[currentEmoji] }}</p>
-        <h1>
-          United
-          <!-- {{ emojis[(currentEmoji + 1) % emojis.length] }} -->
-        </h1>
-        <p class="subtitle">
+        <!-- <p class="emoji">{{ emojis[currentEmoji] }}</p> -->
+        <div class="title-text">
+          <h1>
+            United.
+            <br />го играть!
+            <!-- {{ emojis[(currentEmoji + 1) % emojis.length] }} -->
+          </h1>
+          <!-- <p class="subtitle">
           №1 гильдия сервера
           <span
             ><a style="color: white" href="http://restartcraft.ru"
@@ -16,41 +18,15 @@
           ><br />
           Вступай в наши ряды, если готов :з
         </p>
-        <br />
-        <p><button>Заявка</button></p>
-      </div>
-
-      <div class="gallery-section">
-        <swiper
-          :modules="modules"
-          :effect="'coverflow'"
-          :grab-cursor="true"
-          :slides-per-view="windowWidth > 850 ? 1.5 : 1.1"
-          :centered-slides="true"
-          :space-between="1"
-          :pagination="windowWidth > 850 ? { clickable: true } : false"
-          :navigation="windowWidth < 850 ? false : true"
-          :coverflow-effect="{
-            rotate: 0,
-            depth: 300,
-            modifier: 3,
-            slideShadows: false,
-          }"
-        >
-          <swiper-slide
-            class="swiper-slide"
-            v-for="image in gallery"
-            :key="image"
-          >
-            <img class="slider-image" :src="image" alt="" />
-          </swiper-slide>
-        </swiper>
+        <br /> -->
+          <p><button>Попроситься</button></p>
+        </div>
       </div>
 
       <div class="players-section">
         <div class="container">
-          <h2><router-link to="/players">Участники</router-link></h2>
-          <div v-if="!players.length" class="slider-loading">
+          <!-- <router-link to="/players"><h2>Участники</h2></router-link> -->
+          <div v-if="!players.length" class="players-swiper-loading">
             <Spinner />
           </div>
           <swiper
@@ -60,10 +36,10 @@
             :grab-cursor="true"
             :slides-per-view="
               (() => {
-                if (windowWidth > 800) {
-                  return 2.5;
+                if (windowWidth > 1100) {
+                  return 3.5;
                 } else if (windowWidth > 600) {
-                  return 1.6;
+                  return 2.5;
                 } else {
                   return 1.2;
                 }
@@ -124,61 +100,100 @@
         </div>
       </div>
 
-      <div class="tutorials-section">
-        <div class="container">
-          <h2><router-link to="/tutorials">Руководства</router-link></h2>
-          <div v-if="!tutorials.length" class="slider-loading">
-            <Spinner />
-          </div>
-          <swiper
-            v-else
-            class="tutorials-swiper"
-            :modules="modules"
-            :grab-cursor="true"
-            :slides-per-view="
-              (() => {
-                if (windowWidth > 800) {
-                  return 2.5;
-                } else if (windowWidth > 600) {
-                  return 1.6;
-                } else {
-                  return 1.2;
-                }
-              })()
-            "
-            :space-between="20"
-            :pagination="false"
-            :navigation="true"
+      <!-- <div class="gallery-section">
+        <swiper
+          :modules="modules"
+          :effect="'coverflow'"
+          :grab-cursor="true"
+          :slides-per-view="windowWidth > 850 ? 1.5 : 1.1"
+          :centered-slides="true"
+          :space-between="1"
+          :pagination="windowWidth > 850 ? { clickable: true } : false"
+          :navigation="windowWidth < 850 ? false : true"
+          :coverflow-effect="{
+            rotate: 0,
+            depth: 300,
+            modifier: 3,
+            slideShadows: false,
+          }"
+        >
+          <swiper-slide
+            class="swiper-slide"
+            v-for="image in gallery"
+            :key="image"
           >
-            <swiper-slide
-              class="tutorial-container"
-              v-for="one in tutorials.slice(0, 5)"
-              :key="one"
-            >
-              <router-link
-                style="border: none"
-                :to="
-                  '/tutorials' +
-                  one.contentUrl.replace('https://telegra.ph', '')
-                "
-              >
-                <div
-                  class="tutorial-image"
-                  :style="{
-                    backgroundImage: `url(${one.imageUrl})`,
-                    backgroundSize: 'cover',
-                    height: '320px',
-                    width: '100%',
-                  }"
-                ></div>
-                <!-- <img class="tutorial-iamge" :src="one.imageUrl" alt="" /> -->
-                <h3>{{ one.title }}</h3>
-                <p>{{ one.description.slice(0, 101) }}...</p>
-              </router-link>
-              <!-- <img class="slider-image" :src="image" alt="" /> -->
-            </swiper-slide>
-          </swiper>
+            <img class="slider-image" :src="image" alt="" />
+          </swiper-slide>
+        </swiper>
+      </div> -->
+
+      <div
+        ref="galleryPreviewContainer"
+        class="gallery-preview-section container"
+      >
+        <router-link class="gallery-preview-link" to="/gallery" style="">
+          <img
+            style="
+              z-index: 4;
+              left: 15%;
+              top: 20%;
+              width: 25%;
+              position: absolute;
+            "
+            src="../assets/Oval1.png"
+            alt=""
+            id="gallery-preview"
+          />
+          <img
+            ref="galleryPreviewBigImage"
+            style="left: 25%; z-index: 3; width: 50%; position: absolute"
+            src="../assets/Oval2.png"
+            alt=""
+            id="gallery-preview"
+          />
+          <img
+            style="right: 20%; position: absolute; width: 15%; top: 40%"
+            src="../assets/Oval3.png"
+            alt=""
+            id="gallery-preview"
+          />
+
+          <img
+            src="../assets/галерея.png"
+            style="
+              left: 35%;
+              position: absolute;
+              width: 30%;
+              top: 40%;
+              z-index: 6;
+            "
+            alt=""
+            id="gallery-preview"
+          />
+        </router-link>
+      </div>
+
+      <div class="tutorials-section container">
+        <router-link to="/tutorials"><h2>Руководства</h2></router-link>
+        <div v-if="!tutorials.length" class="slider-loading">
+          <Spinner />
         </div>
+        <!-- <div class="tutorials grid"> -->
+        <Feed :routeBase="'/tutorials'" :publications="tutorials" />
+        <!-- <router-link
+            v-for="one in tutorials.slice(0, 5)"
+            :key="one"
+            style="border: none"
+            :to="
+              '/tutorials' + one.contentUrl.replace('https://telegra.ph', '')
+            "
+          >
+            <img class="tutorial-image" :src="one.imageUrl" alt="" />
+
+            <h3>{{ one.title }}</h3>
+            <p>{{ one.description.slice(0, 101) }}...</p>
+          </router-link> -->
+        <!-- </div> -->
       </div>
     </div>
   </div>
@@ -187,6 +202,7 @@
 <script>
   const config = require("../config.json");
   import * as api from "../api.js";
+  import Feed from "../components/Feed.vue";
   import Spinner from "../components/Spiner.vue";
   import {
     Pagination,
@@ -206,7 +222,7 @@
   export default {
     name: "Home",
 
-    components: { Swiper, SwiperSlide, Spinner },
+    components: { Swiper, SwiperSlide, Spinner, Feed },
 
     data() {
       return {
@@ -263,17 +279,42 @@
         .then(async (res) => {
           this.tutorials = res.data.map((elem) => elem.data);
           console.log(this.tutorials);
+
+          this.tutorials.forEach(async (elem) => {
+            // elem.authorName = await author
+            // let name = await api.getUser
+            let user = await api.getUserByIdFromDb(elem.author);
+            user = user.data[0].data;
+            elem.name = user.guildProfile.nick;
+            elem.avatar = user.profile.avatar;
+
+            // console.log(elem.avatar);
+            // elem.authorId = user.profile.id;
+          });
         });
+
       // api.gallery.getImages().then((res) => {
       // this.gallery = res.data.map((elem) => elem.data);
       // console.log(this.gallery);
       // });
+      this.$refs.galleryPreviewBigImage.onload = () => {
+        this.adaptGalleryPreviewContainer();
+      };
     },
 
     methods: {
+      adaptGalleryPreviewContainer() {
+        const container = this.$refs.galleryPreviewContainer;
+        const image = this.$refs.galleryPreviewBigImage;
+
+        console.log(window.getComputedStyle(image).height);
+
+        container.style.height = window.getComputedStyle(image).height;
+      },
+
       onResize() {
         this.windowWidth = window.innerWidth;
-        console.log(window.innerWidth);
+        this.adaptGalleryPreviewContainer();
       },
 
       startHeartAnimation() {
@@ -290,6 +331,8 @@
 <style scoped>
   .main-wrapper {
     padding-bottom: 100px;
+    /* position: absolute; */
+    top: 0;
   }
 
   .slider-loading {
@@ -299,9 +342,57 @@
     border-radius: 10px;
   }
 
+  @keyframes players {
+    from {
+      /* border-width: 0px; */
+      border-color: var(--c-accent);
+    }
+
+    50% {
+      border-color: rgba(255, 255, 255, 0);
+    }
+
+    to {
+      border-color: var(--c-accent);
+    }
+  }
+
+  .players-swiper-loading {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    border: 3px var(--c-accent) solid;
+    border-radius: 20px;
+    animation: players 2s;
+    animation-iteration-count: infinite;
+  }
+
   .players-swiper {
     padding-top: 20px;
     padding-bottom: 20px;
+  }
+
+  .tutorials-section {
+    margin-top: 100px;
+  }
+
+  .tutorials-section h2 {
+    margin-bottom: 30px;
+  }
+
+  .tutorials-section .grid {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px 30px;
+  }
+
+  .tutorials-section .grid h3 {
+    margin-top: 25px;
+  }
+
+  .tutorials-section .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 
   .tutorials-swiper {
@@ -327,18 +418,36 @@
   }
   .title-section.container {
     /* max-width: 900px; */
-    text-align: center;
+    /* text-align: center; */
+    /* height: calc(); */
+    position: relative;
   }
+
+  .title-section button {
+    border-radius: 1000px;
+  }
+
+  .title-text {
+    /* position: absolute; */
+    /* margin-top: -20px; */
+    /* bottom: -30px; */
+  }
+
   h1 {
-    font-size: 100px;
-    text-align: center;
+    font-size: 130px;
+    /* text-align: left; */
+    /* max-width: 1000px; */
     margin-top: 0;
+  }
+
+  h1 span {
+    /* color: orange; */
+    font-family: inherit;
+    /* font-size: 120px; */
   }
 
   .subtitle {
     font-size: 30px;
-    /* font-family: "Montserrat"; */
-    /* font-weight: 600; */
   }
 
   .subtitle a {
@@ -357,11 +466,11 @@
   }
 
   .gallery img {
-    border-radius: 20px;
+    /* border-radius: 20px; */
   }
 
   .slider-image {
-    border-radius: 10px;
+    /* border-radius: 10px; */
   }
 
   .subtitle a:hover {
@@ -369,14 +478,41 @@
     transform: translate(0px, -5px) scale(1.1) rotate(3deg);
   }
 
-  .gallery-section {
+  .gallery-preview-section {
+    margin-top: 100px;
+    text-align: center;
+    position: relative;
+    /* height: 100vh; */
+  }
+
+  .gallery-preview-link:hover img {
+    transform: scale(1.1);
+  }
+
+  .gallery-preview-link img {
+    transition: 0.3s;
+  }
+
+  .gallery-preview-link:hover img:last-child {
+    transform: scale(1);
+  }
+
+  .gallery-preview {
+    position: absolute;
+  }
+
+  .gallery-preview-section a {
+    border-bottom: none;
+  }
+
+  .gall .gallery-section {
     margin-top: 50px;
     margin-bottom: 50px;
   }
 
   .players-section {
+    transform: skew(0deg, -5deg);
     /* overflow: hidden; */
-    margin-top: 100px;
     margin-bottom: 100px;
   }
 
@@ -384,10 +520,16 @@
     margin-top: 0;
   }
 
+  .players-section h3 {
+    margin-top: 150px;
+  }
+
   .player-container {
+    background-color: var(--c-accent);
     padding: 20px;
-    border: solid #dfdfdf 1px;
-    border-radius: 20px;
+    /* color: white; */
+    /* border: solid #dfdfdf 1px; */
+    border-radius: 15px;
     transition: 0.2s;
   }
 
@@ -404,8 +546,9 @@
     border-radius: 1000px;
   }
 
-  .player-container h3 {
-    /* margin-top: ; */
+  .player-container h3,
+  .player-container span {
+    color: white;
   }
 
   .role {
@@ -421,8 +564,16 @@
   }
 
   @media screen and (max-width: 850px) {
+    .title-section {
+      text-align: center;
+    }
+
+    .tutorials-section .grid {
+      grid-template-columns: 1fr;
+    }
+
     h1 {
-      font-size: 50px;
+      font-size: 60px;
       text-align: center;
       margin-top: 0;
     }
@@ -440,6 +591,15 @@
   @media screen and (max-width: 600px) {
     .player-container img {
       width: 70px;
+    }
+
+    .gallery-preview-section {
+      transform: scale(1.3);
+    }
+
+    .main-wrapper {
+      overflow: hidden !important;
+      /* overflow- */
     }
   }
 </style>
@@ -470,8 +630,8 @@
     height: 100%;
     top: 0;
     width: 50px;
-    background: white;
-    box-shadow: 0 0 100px 100px white;
+    background: var(--c-body);
+    box-shadow: 0 0 100px 100px var(--c-body);
     transition: 0.2s;
   }
 

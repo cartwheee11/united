@@ -15,6 +15,7 @@
           <p>{{ item.description.slice(0, 150) + "..." }}</p>
           <p>
             <img
+              class="avatar"
               style="width: 30px; vertical-align: middle; margin-right: 10px"
               :src="item.avatar"
               alt=""
@@ -88,10 +89,14 @@
   }
 
   .feed-item h3 {
-    margin-top: 15px;
+    margin-top: 25px;
   }
 
   .feed-grid {
+  }
+
+  .avatar {
+    border-radius: 1000px !important;
   }
 
   a {
@@ -102,5 +107,11 @@
   a:hover {
     transform: translateY(-10px);
     z-index: 0;
+  }
+
+  @media screen and (max-width: 800px) {
+    .feed-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

@@ -33,17 +33,17 @@
   }
 
   body {
-    background-color: #fff;
+    background-color: var(--c-body);
     min-height: 100vh;
   }
 
   a {
     text-decoration: none;
-    border-bottom: 3px #dfdfdf solid;
+    border-bottom: 3px var(--c-underline) solid;
   }
 
   a:hover {
-    border-bottom: 3px orange solid;
+    border-bottom: 3px var(--c-accent) solid;
   }
 
   h1 {
@@ -52,12 +52,12 @@
 
   button,
   input {
-    border-radius: 10px;
+    /* border-radius: 10px; */
     height: 50px;
   }
 
   input[type="text"] {
-    border: 1px solid #dfdfdf;
+    border: 1px solid var(--c-border);
     border-radius: 10px;
     background: none;
   }
@@ -65,7 +65,8 @@
   button {
     font-weight: 600;
     color: white;
-    background-color: #000;
+    background-color: var(--c-accent);
+    border-radius: 10px;
   }
 
   .text-block img {
@@ -95,7 +96,7 @@
   }
 
   button:hover {
-    background-color: #444;
+    background-color: #f27b7b;
   }
 
   .container {
@@ -114,7 +115,7 @@
   .swiper-button-next,
   .swiper-button-prev,
   .swiper-pagination-bullet-active {
-    color: orange !important;
+    color: var(--c-accent) !important;
   }
 
   .swiper-pagination-bullet-active {
@@ -128,11 +129,15 @@
     }
 
     h1 {
-      font-size: 35px;
+      font-size: 40px;
     }
 
     h2 {
-      font-size: 30px;
+      font-size: 35px;
+    }
+
+    h3 {
+      font-style: 25px;
     }
   }
 </style>

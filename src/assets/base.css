@@ -3,12 +3,29 @@
 :root {
   --light-gray: #efefef;
   --dark-gray: #e3e2e2;
+
+  /* --c-body: rgb(255, 235, 235); */
+  --c-body: #f8f6e7;
+  --c-accent: #ec5a59;
+  --c-underline: #eb47266e;
+  --c-border: #eb472620;
+}
+
+@font-face {
+  font-family: "Oswald";
+  src: url("/fonts/ofont.ru_Bebas Neue.ttf");
 }
 
 * {
   box-sizing: border-box;
-  color: black;
-  font-family: "Montserrat";
+  color: var(--c-accent);
+  font-family: "montserrat";
+}
+
+h1,
+h2 {
+  font-family: "Oswald";
+  /* text-transform: uppercase; */
 }
 
 canvas {
@@ -62,18 +79,19 @@ p {
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 80px;
   margin-top: 1.4em;
 }
 
 h2 {
-  font-size: 35px;
+  font-size: 50px;
   margin-top: 1.3em;
 }
 
 h3 {
-  font-size: 25px;
+  font-size: 30px;
   margin-top: 1.2em;
+  font-family: "Oswald";
 }
 
 p {

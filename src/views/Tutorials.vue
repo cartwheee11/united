@@ -189,19 +189,20 @@
   .tag {
     white-space: nowrap;
     height: auto;
-    color: black;
-    border: 1px grey solid;
+    color: var(--c-accent);
+    border: 1px var(--c-border) solid;
     padding: 3px 10px;
     border-radius: 100px;
     margin-right: 5px;
     /* display: inline-block; */
     margin-bottom: 5px;
     /* word-break: keep-all; */
-    background-color: #fff;
+    /* background-color: none; */
+    background: none;
   }
 
   .active-tag {
-    background: #000;
+    background: var(--c-accent);
     color: white;
   }
 

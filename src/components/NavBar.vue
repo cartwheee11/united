@@ -5,12 +5,23 @@
         <div class="container nav-bar-inner-wrapper">
           <button @click="onBurgerClick" class="burger">
             <img
-              src="https://img.icons8.com/material-outlined/24/000000/menu--v1.png"
+              src="https://img.icons8.com/material-outlined/24/ec5a59/menu--v1.png"
             />
           </button>
-          <router-link to="/"
-            ><img class="logo" src="../assets/united-logo.png" alt=""
-          /></router-link>
+          <router-link class="logo-ling" to="/">
+            <!-- <img class="logo" src="../assets/united-logo.png" alt=""/> -->
+            <h2
+              style="
+                margin: 0;
+                display: block !important;
+                <!-- font-family: 'montserrat'; -->
+                font-weight: 800;
+                transform: translateY(4px)
+              "
+            >
+              UNI
+            </h2>
+          </router-link>
           <div
             class="menu"
             @click="onBurgerClick"
@@ -28,7 +39,7 @@
             <a href="#">{{ $store.state.user.guildProfile?.nick }}</a>
             <button class="log-out-button" @click="logOut">
               <img
-                src="https://img.icons8.com/fluency-systems-filled/48/000000/exit.png"
+                src="https://img.icons8.com/fluency-systems-filled/48/ec5a59/exit.png"
               />
             </button>
           </div>
@@ -164,8 +175,8 @@
     /* padding: 21px 0; */
     align-items: center;
     display: flex;
-    background-color: white;
-    border-bottom: 1px var(--border-color) solid;
+    background-color: var(--c-body);
+    border-bottom: 1px var(--c-border) solid;
     transition: 0.2s;
     height: 50px;
 
@@ -203,6 +214,11 @@
   .logo {
     width: 120px;
     image-rendering: pixelated;
+    /* border-b */
+  }
+
+  .logo-ling {
+    border: none;
   }
 
   .burger {
@@ -214,9 +230,9 @@
     width: 100%;
     padding-top: 20px;
     padding-bottom: 20px;
-    border-bottom: 1px var(--border-color) solid;
+    border-bottom: 1px var(--c-border) solid;
     top: 0;
-    background-color: white;
+    background-color: var(--c-body);
     /* height: 80px; */
     transition: 0.2s;
   }
@@ -228,6 +244,7 @@
   .nav-scroll-down {
     /* height: 50px; */
     padding-top: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
     padding-bottom: 5px;
   }
 
@@ -359,7 +376,6 @@
 
     .menu {
       order: 2;
-      /* border-top: 1px #dfdfdf solid; */
     }
 
     .breadcrumb span {

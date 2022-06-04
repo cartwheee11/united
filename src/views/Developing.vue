@@ -23,6 +23,7 @@
 
   img {
     width: 100px;
+    mix-blend-mode: multiply;
   }
 
   .inner {

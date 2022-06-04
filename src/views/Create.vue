@@ -139,7 +139,7 @@ script.
     gap: 10px;
   }
 
-  .tag {
+  /* .tag {
     border: 1px grey solid;
     padding: 3px 10px;
     border-radius: 100px;
@@ -149,6 +149,21 @@ script.
     color: black;
     background-color: #fff;
     height: auto;
+  } */
+
+  .tag {
+    white-space: nowrap;
+    height: auto;
+    color: var(--c-accent);
+    border: 1px var(--c-border) solid;
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-right: 5px;
+    /* display: inline-block; */
+    margin-bottom: 5px;
+    /* word-break: keep-all; */
+    /* background-color: none; */
+    background: none;
   }
 
   .active-tag {
