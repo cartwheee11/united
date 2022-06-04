@@ -8,19 +8,19 @@
               src="https://img.icons8.com/material-outlined/24/ec5a59/menu--v1.png"
             />
           </button>
-          <router-link class="logo-ling" to="/">
+          <router-link class="logo-link" to="/">
             <!-- <img class="logo" src="../assets/united-logo.png" alt=""/> -->
-            <h2
+            <!-- <h2
               style="
                 margin: 0;
                 display: block !important;
-                <!-- font-family: 'montserrat'; -->
                 font-weight: 800;
-                transform: translateY(4px)
+                transform: translateY(4px);
               "
             >
-              UNI
-            </h2>
+              UN
+            </h2> -->
+            <img height="50" src="../assets/united-logo-small.png" alt="" />
           </router-link>
           <div
             class="menu"
@@ -49,7 +49,7 @@
             class="login-button user-info"
             ><button>войти</button></a
           >
-          <!-- <button v-else @click="">войти</button> -->
+          <!-- <button v-else @click=""></button> -->
         </div>
       </nav>
       <div
@@ -217,8 +217,13 @@
     /* border-b */
   }
 
-  .logo-ling {
+  .logo-link {
     border: none;
+    transition: 0.2s;
+  }
+
+  .logo-link:hover {
+    transform: scale(1.1);
   }
 
   .burger {

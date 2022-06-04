@@ -425,6 +425,16 @@
 
   .title-section button {
     border-radius: 1000px;
+    /* background-color: var(--с-accent-dark); */
+    background: none;
+    color: white;
+    /* color: var(--c-accent); */
+    background-color: var(--c-accent);
+    /* border: 1px solid var(--c-accent); */
+  }
+
+  .title-section button:hover {
+    /* background: rgb(81, 74, 74); */
   }
 
   .title-text {
