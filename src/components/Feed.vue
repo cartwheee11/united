@@ -12,7 +12,9 @@
         <div class="feed-item-inner-wrapper">
           <img :src="item.imageUrl" alt="" />
           <h3>{{ item.title }}</h3>
-          <p>{{ item.description.slice(0, 150) + "..." }}</p>
+          <p class="description">
+            {{ item.description.slice(0, 150) + "..." }}
+          </p>
           <p>
             <img
               class="avatar"
@@ -43,11 +45,21 @@
         type: String,
         reqiured: false,
       },
+
+      bigFirstOne: {
+        type: Boolean,
+        required: false,
+        default: true,
+      },
     },
   };
 </script>
 
 <style scoped>
+  .description {
+    max-width: 600px;
+  }
+
   .feed-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
