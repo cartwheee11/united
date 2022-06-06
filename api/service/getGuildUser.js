@@ -3,6 +3,7 @@ const db = require("../getDb.js");
 const q = fauna.query;
 const config = require("../config.json");
 const fetch = require("node-fetch");
+const Jimp = require("jimp");
 
 // let db = new fauna.Client({
 //   secret: process.env.DB_SECRET,
@@ -28,6 +29,13 @@ async function getGuildUser(auth) {
   });
 
   let guilds = await result.json();
+
+  let img = await Jimp.read(
+    `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}`
+  );
+
+  let base64 = await img.getBase64Async("image/png");
+  user.avatar = base64;
 
   result = await fetch(
     `https://discord.com/api/users/@me/guilds/${config.guildId}/member`,
