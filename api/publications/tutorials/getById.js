@@ -35,6 +35,7 @@ export default async function (req, res) {
   }
 
   //authorization
+  console.log(auth, hash);
   let compare = bcrypt.compareSync(auth, hash);
   //if yes, chacking perms
   if (compare) {
