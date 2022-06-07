@@ -277,7 +277,11 @@
       api
         .getTutorials({ userId: this.$store.state.user?.id })
         .then(async (res) => {
-          this.tutorials = res.data.map((elem) => elem.data);
+          this.tutorials = res.data.map((elem) => {
+            elem.data.id = elem.ref["@ref"].id;
+            // console.log(elem.data);
+            return elem.data;
+          });
           console.log(this.tutorials);
 
           this.tutorials.forEach(async (elem) => {

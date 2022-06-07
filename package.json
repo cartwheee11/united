@@ -10,6 +10,7 @@
   "dependencies": {
     "@vercel/node": "^1.14.0",
     "@wyhaya/vue-slide": "^1.0.2",
+    "bcrypt": "^5.0.1",
     "core-js": "^3.6.5",
     "faunadb": "^4.5.4",
     "jimp": "^0.16.1",

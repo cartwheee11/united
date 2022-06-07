@@ -110,7 +110,6 @@
             userId: this.$store.state.user?.id,
           })
           .then((res) => {
-            // console.log(res);
             if (res) {
               if (res.after) {
                 this.tutorialsAfter = res.after[0]["@ref"].id;
@@ -119,7 +118,10 @@
               }
               this.buttonLoading = false;
               this.tutorials = this.tutorials.concat(
-                res.data.map((elem) => elem.data)
+                res.data.map((elem) => {
+                  elem.data.id = elem.ref["@ref"].id;
+                  return elem.data;
+                })
               );
 
               this.tutorials.forEach(async (elem) => {
@@ -131,6 +133,8 @@
                 elem.avatar = user.profile.avatar;
                 // elem.authorId = user.profile.id;
               });
+
+              console.log(this.tutorials);
             } else {
               this.showError = true;
             }

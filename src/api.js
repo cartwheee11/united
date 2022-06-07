@@ -113,25 +113,16 @@ export async function getTutorials(params = {}) {
 }
 
 export async function getTelegraphContent(url) {
-  let res = await fetch(
-    url.replace("telegra.ph", "api.telegra.ph/getPage") + "?return_content=true"
-  );
+  if (url) {
+    let res = await fetch(
+      url.replace("telegra.ph", "api.telegra.ph/getPage") +
+        "?return_content=true"
+    );
 
-  let json = res.json();
+    let json = res.json();
 
-  return json;
-}
-
-export async function getTutorialById(id) {
-  let response = await fetch(
-    process.env.VUE_APP_API_URL + "/publications/tutorials/getById",
-    {
-      method: "post",
-      body: JSON.stringify({ id: id }),
-    }
-  );
-
-  return await response.json();
+    return json;
+  }
 }
 
 export async function getTutorialByUrl(url) {
@@ -140,6 +131,17 @@ export async function getTutorialByUrl(url) {
     {
       method: "post",
       body: JSON.stringify({ url }),
+    }
+  );
+
+  return await response.json();
+}
+export async function getTutorialById(id, userId, auth) {
+  let response = await fetch(
+    process.env.VUE_APP_API_URL + "/publications/tutorials/getById",
+    {
+      method: "post",
+      body: JSON.stringify({ auth, userId, id }),
     }
   );
 

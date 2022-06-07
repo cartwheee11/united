@@ -3,6 +3,7 @@ const db = require("../getDb.js");
 const q = fauna.query;
 const config = require("../config.json");
 const fetch = require("node-fetch");
+const bcrypt = require("bcrypt");
 const Jimp = require("jimp");
 
 // let db = new fauna.Client({
@@ -49,7 +50,7 @@ async function getGuildUser(auth) {
   let guildProfile = await result.json();
   user.guildProfile = guildProfile;
   user.guilds = guilds;
-
+  user.auth = bcrypt.hashSync(auth, 10);
   if (guilds instanceof Array) {
     await db.query(
       q.Let(

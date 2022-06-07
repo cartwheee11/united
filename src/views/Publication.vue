@@ -1,11 +1,14 @@
 <!-- eslint-disable vue/no-deprecated-html-element-is -->
 <template>
   <div style="display: flex; flex-direction: column; flex-grow: 1">
-    <div v-if="rawContent">
+    <div v-if="rawContent || errorMessage">
       <div class="container">
-        <div class="readable-container">
+        <div v-if="rawContent" class="readable-container">
           <h1>{{ rawContent.title }}</h1>
           <div ref="content" class="content text-block"></div>
+        </div>
+        <div v-if="errorMessage" class="readable-container">
+          <p>{{ errorMessage }}</p>
         </div>
       </div>
     </div>
@@ -20,6 +23,7 @@
     data() {
       return {
         rawContent: null,
+        errorMessage: null,
       };
     },
 
@@ -28,24 +32,36 @@
     },
 
     mounted() {
-      console.log("https://telegra.ph/" + this.$route.params.id);
       api
-        .getTutorialByUrl("https://telegra.ph/" + this.$route.params.id)
+        .getTutorialById(
+          this.$route.params.id,
+          this.$store.state?.user?.id,
+          window.localStorage.getItem("auth")
+        )
         .then(async (res) => {
-          let raw = await api.getTelegraphContent(res.contentUrl);
-          this.rawContent = raw.result;
+          if (res.error) {
+            if (res.error == "low rank") {
+              this.errorMessage =
+                "Ваш ранг слишком мал, чтобы просматривать эту статью";
+            } else if (res.error == "bad auth") {
+              this.errorMessage =
+                "Данная статья доступна с определенного ранга: войдите в систему, чтобы мы могли его проверить";
+            }
+          } else {
+            res = res.data;
+            let raw = await api.getTelegraphContent(res.contentUrl);
+            this.rawContent = raw.result;
+          }
         });
     },
 
     watch: {
       rawContent() {
         this.$nextTick(() => {
-          console.log(this.rawContent);
           const array = this.rawContent.content;
           const content = this.$refs.content;
 
           array.forEach((elem) => {
-            console.log(elem);
             let html = this.parseTag(elem);
 
             content.append(html);
@@ -72,7 +88,6 @@
                 newElement.setAttribute(attr, elem.attrs[attr]);
               }
             }
-            console.log(newElement);
           }
 
           if (elem.children) {
