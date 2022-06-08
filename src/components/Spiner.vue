@@ -27,6 +27,7 @@
     height: 100%;
     display: flex;
     text-align: center;
+    flex-grow: 1;
 
     align-content: center;
     align-items: center;
