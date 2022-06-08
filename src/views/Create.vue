@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="readable-container wrapper text-block readable-container">
+    <div class="readable-container info-block text-block readable-container">
       <h3 style="margin-top: 0">Добавь публикацию</h3>
       <p>
         Чтобы добавить статью, сперва надо ее написать тут
@@ -172,13 +172,11 @@ script.
   }
 
   .wrapper {
-    /* border: 1px #dfdfdf solid; */
     border-radius: 10px;
     padding: 50px;
     margin-top: 50px;
     margin-bottom: 50px;
     box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-    /* padding: 20px; */
     border-radius: 10px;
   }
 

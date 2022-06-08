@@ -2,8 +2,11 @@
   <div class="container askjhdkjashd" v-if="state == 'loading'">
     <Spinner />
   </div>
-  <div v-else-if="state == 'bad login'" class="readable-container text-block">
-    <h3 style="margin: 0">ошибка входа</h3>
+  <div
+    v-else-if="state == 'bad login'"
+    class="readable-container info-block text-block"
+  >
+    <h3 style="margin: 0">Ошибка входа</h3>
     <p>
       Для того, чтобы войти на сайт, необходимо состоять в нашем дискорд-сервере
     </p>
@@ -54,11 +57,11 @@
     vertical-align: middle;
   }
 
-  .readable-container {
+  /* .readable-container {
     padding: 50px;
     margin-top: 50px;
     margin-bottom: 50px;
     box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-  }
+  } */
 </style>

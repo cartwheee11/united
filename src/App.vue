@@ -48,6 +48,7 @@
 
   h1 {
     font-weight: 800;
+    /* font-family: "Oswald"; */
   }
 
   button,
@@ -120,6 +121,21 @@
 
   .swiper-pagination-bullet-active {
     background-color: orange !important;
+  }
+
+  .info-block {
+    border-radius: 10px;
+    padding: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    /* border: 1px solid var(--c-border); */
+    /* box-shadow: 0 1px 5px 0 rgba(146, 21, 21, 0.2); */
+    border-radius: 0px;
+
+    border-top: 5px solid var(--c-accent);
+    /* border: 1px solid var(--c-border); */
+    /* border-radius: 10px; */
+    background: white;
   }
 
   @media screen and (max-width: 850px) {

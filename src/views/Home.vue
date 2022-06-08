@@ -428,6 +428,7 @@
   }
 
   .title-section button {
+    margin-top: 30px;
     border-radius: 1000px;
     /* background-color: var(--с-accent-dark); */
     background: none;
@@ -448,7 +449,7 @@
   }
 
   h1 {
-    font-size: 130px;
+    font-size: 120px;
     /* text-align: left; */
     /* max-width: 1000px; */
     margin-top: 0;
@@ -540,6 +541,7 @@
 
   .player-container {
     background-color: var(--c-accent);
+
     padding: 20px;
     /* color: white; */
     /* border: solid #dfdfdf 1px; */
@@ -577,16 +579,38 @@
     border-radius: 10px;
   }
 
+  .title-section {
+    margin-top: 70px;
+    margin-bottom: 60px;
+  }
+
+  @media screen and (max-width: 1300px) {
+    .container {
+      max-width: 1150px;
+    }
+
+    .title-section {
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+
+    .title-section h1 {
+      font-size: 110px;
+    }
+  }
+
   @media screen and (max-width: 850px) {
     .title-section {
       text-align: center;
+      margin-top: 60px;
+      margin-bottom: 60px;
     }
 
     .tutorials-section .grid {
       grid-template-columns: 1fr;
     }
 
-    h1 {
+    .title-section h1 {
       font-size: 60px;
       text-align: center;
       margin-top: 0;
@@ -614,6 +638,12 @@
     .main-wrapper {
       overflow: hidden !important;
       /* overflow- */
+    }
+  }
+
+  @media screen and (max-width: 390px) {
+    .title-section h1 {
+      font-size: 40px;
     }
   }
 </style>

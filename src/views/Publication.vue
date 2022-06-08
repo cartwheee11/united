@@ -118,6 +118,18 @@
   .readable-container {
     margin-left: 0;
   }
+
+  h1 {
+    margin-top: 80px;
+    margin-bottom: 70px;
+  }
+
+  @media screen and (max-width: 850px) {
+    h1 {
+      margin-bottom: 10px;
+      margin-top: 30px;
+    }
+  }
 </style>
 
 <style>

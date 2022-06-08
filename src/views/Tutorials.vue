@@ -179,9 +179,12 @@
 
   .controls {
     /* min-height: 300px; */
-    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2); */
+    border-top: 5px solid var(--c-accent);
+    /* border: 1px solid var(--c-border); */
     padding: 20px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
+    background: white;
   }
 
   .controls-wrapper h3 {

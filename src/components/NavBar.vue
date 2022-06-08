@@ -39,7 +39,7 @@
             <a href="#">{{ $store.state.user.guildProfile?.nick }}</a>
             <button class="log-out-button" @click="logOut">
               <img
-                src="https://img.icons8.com/fluency-systems-filled/48/ec5a59/exit.png"
+                src="https://img.icons8.com/fluency-systems-filled/48/ff7b4e/exit.png"
               />
             </button>
           </div>
