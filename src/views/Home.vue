@@ -6,7 +6,7 @@
         <div class="title-text">
           <h1>
             United.
-            <br />Го играть!
+            <br />Go с нами!
             <!-- {{ emojis[(currentEmoji + 1) % emojis.length] }} -->
           </h1>
           <!-- <p class="subtitle">
@@ -180,20 +180,13 @@
         </div>
         <!-- <div class="tutorials grid"> -->
         <Feed :routeBase="'/tutorials'" :publications="tutorials" />
-        <!-- <router-link
-            v-for="one in tutorials.slice(0, 5)"
-            :key="one"
-            style="border: none"
-            :to="
-              '/tutorials' + one.contentUrl.replace('https://telegra.ph', '')
-            "
-          >
-            <img class="tutorial-image" :src="one.imageUrl" alt="" />
 
-            <h3>{{ one.title }}</h3>
-            <p>{{ one.description.slice(0, 101) }}...</p>
-          </router-link> -->
-        <!-- </div> -->
+        <br /><br />
+        <router-link
+          to="/tutorials"
+          style="width: 100%; display: block; border: none; text-align: center"
+          ><button>Показать еще</button></router-link
+        >
       </div>
     </div>
   </div>
@@ -377,10 +370,15 @@
 
   .tutorials-section {
     margin-top: 100px;
+    /* background: white; */
+    /* border-radius: 50px; */
+    /* padding: 50px; */
   }
 
   .tutorials-section h2 {
+    /* text-align: center; */
     margin-bottom: 30px;
+    /* margin-top: 10px; */
   }
 
   .tutorials-section .grid {

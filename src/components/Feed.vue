@@ -93,7 +93,7 @@
   }
 
   .feed-item:first-child h3 {
-    font-size: 35px;
+    /* font-size: 35px; */
   }
 
   .feed-item-with-no-image .feed-item-inner-wrapper {

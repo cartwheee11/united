@@ -148,7 +148,7 @@
     }
 
     h3 {
-      font-style: 25px;
+      font-size: 28px;
     }
   }
 </style>
