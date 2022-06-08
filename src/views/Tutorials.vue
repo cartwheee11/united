@@ -133,8 +133,6 @@
                 elem.avatar = user.profile.avatar;
                 // elem.authorId = user.profile.id;
               });
-
-              console.log(this.tutorials);
             } else {
               this.showError = true;
             }

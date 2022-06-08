@@ -25,54 +25,50 @@ export default async function (req, res) {
 
   let guilds = await result.json();
 
-  if (guilds.map((elem) => elem.id == config.guildId)) {
-    if (guilds instanceof Array) {
-      result = await fetch(
-        `https://discord.com/api/users/@me/guilds/${config.guildId}/member`,
+  if (guilds.filter((elem) => elem.id == config.guildId).length) {
+    result = await fetch(
+      `https://discord.com/api/users/@me/guilds/${config.guildId}/member`,
+      {
+        headers: {
+          authorization: auth,
+        },
+      }
+    );
+
+    let guildProfile = await result.json();
+    let img = await Jimp.read(
+      `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}`
+    );
+
+    let base64 = await img.getBase64Async("image/png");
+    user.avatar = base64;
+    user.guilds = guilds;
+    user.guildProfile = guildProfile;
+
+    user.auth = bcrypt.hashSync(auth, 10);
+
+    await db.query(
+      q.Let(
         {
-          headers: {
-            authorization: auth,
-          },
-        }
-      );
-
-      let guildProfile = await result.json();
-      let img = await Jimp.read(
-        `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}`
-      );
-
-      let base64 = await img.getBase64Async("image/png");
-      user.avatar = base64;
-      user.guilds = guilds;
-      user.guildProfile = guildProfile;
-
-      user.auth = bcrypt.hashSync(auth, 10);
-
-      await db.query(
-        q.Let(
-          {
-            match: q.Match(q.Index("user-by-id"), user.id),
+          match: q.Match(q.Index("user-by-id"), user.id),
+          data: {
             data: {
-              data: {
-                id: user.id,
-                profile: user,
-                guildProfile,
-                guilds,
-              },
+              id: user.id,
+              profile: user,
+              guildProfile,
+              guilds,
             },
           },
-          q.If(
-            q.Exists(q.Var("match")),
-            q.Update(q.Select("ref", q.Get(q.Var("match"))), q.Var("data")),
-            q.Create(q.Collection("users"), q.Var("data"))
-          )
+        },
+        q.If(
+          q.Exists(q.Var("match")),
+          q.Update(q.Select("ref", q.Get(q.Var("match"))), q.Var("data")),
+          q.Create(q.Collection("users"), q.Var("data"))
         )
-      );
+      )
+    );
 
-      res.json(user);
-    } else {
-      res.json(false);
-    }
+    res.json(user);
   } else {
     res.json(false);
   }
