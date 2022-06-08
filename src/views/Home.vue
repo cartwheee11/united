@@ -6,7 +6,7 @@
         <div class="title-text">
           <h1>
             United.
-            <br />го играть!
+            <br />Го играть!
             <!-- {{ emojis[(currentEmoji + 1) % emojis.length] }} -->
           </h1>
           <!-- <p class="subtitle">
