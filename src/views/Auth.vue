@@ -2,14 +2,14 @@
   <div class="container askjhdkjashd" v-if="state == 'loading'">
     <Spinner />
   </div>
-  <div
-    v-else-if="state == 'bad login'"
-    class="readable-container info-block text-block"
-  >
-    <h3 style="margin: 0">Ошибка входа</h3>
-    <p>
-      Для того, чтобы войти на сайт, необходимо состоять в нашем дискорд-сервере
-    </p>
+  <div v-else-if="state == 'bad login'" class="container">
+    <div class="readable-container info-block text-block">
+      <h3 style="margin: 0">Ошибка входа</h3>
+      <p>
+        Для того, чтобы войти на сайт, необходимо состоять в нашем
+        дискорд-сервере
+      </p>
+    </div>
   </div>
 </template>
 

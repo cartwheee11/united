@@ -332,6 +332,11 @@
     margin-left: 20px;
   }
 
+  .arrow-right {
+    height: 10px;
+    width: 10px;
+  }
+
   @media screen and (max-width: 850px) {
     .logo {
       display: none;
@@ -383,22 +388,17 @@
       order: 2;
     }
 
-    .breadcrumb span {
+    /* .breadcrumb span {
       font-size: 16px;
       vertical-align: middle;
-    }
-
-    .arrow-right {
-      height: 10px;
-      width: 10px;
-    }
+    } */
 
     h1 {
       /* margin-top: 20px; */
     }
 
     .breadcrumb {
-      height: 40px;
+      /* height: 40px; */
       /* display: flex; */
       /* transform: scaleY(0); */
     }

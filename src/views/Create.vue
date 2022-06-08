@@ -1,40 +1,44 @@
 <template>
   <div>
-    <div class="readable-container info-block text-block readable-container">
-      <h3 style="margin-top: 0">Добавь публикацию</h3>
-      <p>
-        Чтобы добавить статью, сперва надо ее написать тут
-        <a href="https://telegra.ph">Telegraph</a>, а потом добавить ссылку
-        сюда:
-      </p>
+    <div class="container">
+      <div class="readable-container info-block text-block readable-container">
+        <h3 style="margin-top: 0">Добавь публикацию</h3>
+        <p>
+          Чтобы добавить статью, сперва надо ее написать тут
+          <a href="https://telegra.ph">Telegraph</a>, а потом добавить ссылку
+          сюда:
+        </p>
 
-      <p class="input-section">
-        <input
-          v-model="contentUrl"
-          type="text"
-          placeholder="Ссылка на сатью из telegra.ph"
-        />
-        <button @click="addPublication">Добавить</button>
-      </p>
-      <h3>Прикрепить теги</h3>
-      <p>
-        <button
-          @click="onTagClick(tag)"
-          class="tag"
-          :class="activeTags.has(tag) ? 'active-tag' : ''"
-          v-for="tag in tags"
-          :key="tag"
-        >
-          {{ tag }}
-        </button>
-      </p>
+        <p class="input-section">
+          <input
+            v-model="contentUrl"
+            type="text"
+            placeholder="Ссылка на сатью из telegra.ph"
+          />
+          <button @click="addPublication">Добавить</button>
+        </p>
+        <h3>Прикрепить теги</h3>
+        <p>
+          <button
+            @click="onTagClick(tag)"
+            class="tag"
+            :class="activeTags.has(tag) ? 'active-tag' : ''"
+            v-for="tag in tags"
+            :key="tag"
+          >
+            {{ tag }}
+          </button>
+        </p>
 
-      <h3>Добавить новый тег (нет)</h3>
-      <p>Внимание! Это создаст новую категорию — добавлять, если необходимо</p>
-      <p class="input-section">
-        <input type="text" placeholder="Название нового тега" />
-        <button>Добавить</button>
-      </p>
+        <h3>Добавить новый тег (нет)</h3>
+        <p>
+          Внимание! Это создаст новую категорию — добавлять, если необходимо
+        </p>
+        <p class="input-section">
+          <input type="text" placeholder="Название нового тега" />
+          <button>Добавить</button>
+        </p>
+      </div>
     </div>
   </div>
 </template>
