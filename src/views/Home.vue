@@ -679,6 +679,14 @@
     transition: 0.2s;
   }
 
+  .players-section .swiper-button-next {
+    right: 0;
+  }
+
+  .players-section .swiper-button-prev {
+    left: 0;
+  }
+
   .players-section .swiper-button-disabled {
     opacity: 0;
   }
