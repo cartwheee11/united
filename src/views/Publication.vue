@@ -4,7 +4,24 @@
     <div v-if="rawContent || errorMessage">
       <div class="container">
         <div v-if="rawContent" class="readable-container">
-          <h1>{{ rawContent.title }}</h1>
+          <div class="title-section">
+            <!-- <p>{{ date }}</p> -->
+            <br />
+            <h1>{{ rawContent.title }}</h1>
+            <br />
+            <p>
+              <img
+                width="30"
+                style="
+                  border-radius: 100%;
+                  vertical-align: middle;
+                  margin-right: 10px;
+                "
+                :src="avatar"
+                alt=""
+              />{{ author }}
+            </p>
+          </div>
           <div ref="content" class="content text-block"></div>
         </div>
         <div v-if="errorMessage" class="readable-container">
@@ -24,6 +41,10 @@
       return {
         rawContent: null,
         errorMessage: null,
+        author: null,
+        date: null,
+        accessFrom: null,
+        avatar: null,
       };
     },
 
@@ -48,7 +69,17 @@
                 "Данная статья доступна с определенного ранга: войдите в систему, чтобы мы могли его проверить";
             }
           } else {
+            // this.author = res.data.name
+
+            // elem.name = user.guildProfile.nick;
+            let date = new Date((res.ts + 0) / 1000);
+            this.date =
+              date.getDay() + "." + date.getMonth() + "." + date.getFullYear();
             res = res.data;
+            let user = await api.getUserByIdFromDb(res.author);
+            this.author = user.data[0].data.guildProfile.nick;
+            this.avatar = user.data[0].data.profile.avatar;
+
             let raw = await api.getTelegraphContent(res.contentUrl);
             this.rawContent = raw.result;
           }
@@ -114,18 +145,21 @@
     margin-top: 50px;
     padding-bottom: 100px;
   }
+  h1 {
+    margin: 0;
+  }
 
   .readable-container {
     margin-left: 0;
   }
 
-  h1 {
-    margin-top: 80px;
-    margin-bottom: 70px;
+  .title-section {
+    margin-top: 100px;
+    margin-bottom: 40px;
   }
 
   @media screen and (max-width: 850px) {
-    h1 {
+    .title-section {
       margin-bottom: 10px;
       margin-top: 30px;
     }
