@@ -120,9 +120,6 @@
     margin-top: 25px;
   }
 
-  .feed-grid {
-  }
-
   .avatar {
     border-radius: 1000px !important;
   }
@@ -140,6 +137,10 @@
   @media screen and (max-width: 800px) {
     .feed-grid {
       grid-template-columns: 1fr;
+    }
+
+    .feed-item:first-child {
+      grid-column-start: span 1;
     }
   }
 </style>
