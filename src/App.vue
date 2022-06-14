@@ -21,6 +21,7 @@
 </script>
 
 <style>
+  @import url("./assets/swalStyle.css");
   @import url("./assets/base.css");
   @import url("./assets/roles.css");
   @font-face {

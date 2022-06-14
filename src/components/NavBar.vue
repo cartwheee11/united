@@ -45,7 +45,8 @@
           </div>
           <a
             v-else
-            :href="`https://discord.com/api/oauth2/authorize?client_id=959075645118378085&redirect_uri=http%3A%2F%2F${host}%2Fauth&response_type=token&scope=identify%20guilds%20guilds.members.read`"
+            @click="onLoginButtonClick"
+            href="#"
             class="login-button user-info"
             ><button>войти</button></a
           >
@@ -100,6 +101,30 @@
     },
 
     methods: {
+      onLoginButtonClick() {
+        this.$swal({
+          title: "Воу-воу-воу",
+          text: "приве",
+          html: `
+          <img src="/pimon.png"> 
+          <p>Постой-ка, а ты уже есть в нашем дискордике o.O? Для того, чтобы мы могли это проверить, тебе нужно зайти на сайт через дискорд :з</p>
+          <br/>
+          <p>
+            <a
+              href="https://discord.com/api/oauth2/authorize?client_id=959075645118378085&redirect_uri=http%3A%2F%2F${window.location.host}%2Fauth&response_type=token&scope=identify%20guilds%20guilds.members.read"
+            >
+              <button focuse="false" style="padding: 5px !important; width: 100%;  background: #5a65f5 !important; color: white !important">
+                <img width="35" style="padding: 5px !important; vertical-align: middle; margin-top: -2px" src="https://icon-library.com/images/discord-icon-white/discord-icon-white-1.jpg">
+                Войти через Discord
+              </button>
+            </a>
+          </p>
+        `,
+          focusConfirm: false,
+          showConfirmButton: false,
+        });
+      },
+
       onBurgerClick() {
         this.burgerClicked = !this.burgerClicked;
       },

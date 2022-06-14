@@ -1,0 +1,9 @@
+.swal2-container button {
+  background-color: var(--c-accent) !important;
+  border-radius: 10px !important;
+  min-width: 100px;
+}
+
+.swal2-modal {
+  border-radius: 20px !important;
+}
