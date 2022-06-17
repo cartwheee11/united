@@ -27,7 +27,7 @@
             @click="onBurgerClick"
             :class="burgerClicked ? 'burger-clicked-menu' : ''"
           >
-            <router-link to="/news">новости</router-link>
+            <router-link to="/gallery">галерея</router-link>
             <router-link to="/tutorials">руководства</router-link>
             <router-link to="/about">о нас</router-link>
           </div>

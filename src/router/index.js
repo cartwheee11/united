@@ -7,6 +7,7 @@ import Tutorials from "../views/Tutorials.vue";
 import Create from "../views/Create.vue";
 import Developing from "../views/Developing.vue";
 import Home from "../views/Home";
+import Gallery from "../views/Gallery";
 
 const routes = [
   {
@@ -18,7 +19,7 @@ const routes = [
   {
     path: "/gallery",
     name: "Галерея",
-    component: Developing,
+    component: Gallery,
   },
   {
     path: "/tutorials",

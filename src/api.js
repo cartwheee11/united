@@ -9,7 +9,7 @@ class Gallery {
 
   async getImages(size, after) {
     let ans = await fetch(this.url, {
-      body: JSON.stringify({ size, after }),
+      body: JSON.stringify({ size: size, after: after }),
       method: "post",
     });
 
