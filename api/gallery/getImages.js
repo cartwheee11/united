@@ -16,8 +16,6 @@ export default async function (req, res) {
     console.log(afterId);
   }
 
-  // console.log(size, after);
-
   let response = await db.query(
     q.Map(
       q.Paginate(q.Reverse(q.Documents(q.Collection("gallery"))), {
