@@ -5,12 +5,15 @@
   --dark-gray: #e3e2e2;
 
   /* --c-body: rgb(255, 235, 235); */
-  --c-body: #f6f6f6;
+
+  --c-block: #f3f4f8;
+  --c-body: #fff;
   --c-text: rgb(51, 51, 51);
-  --c-accent: #ff7b4e;
+  --c-accent: #28d223;
+  --c-hover: #28d223d2;
   --с-accent-dark: rgb(53, 48, 48);
-  --c-underline: #ff7a4e6f;
-  --c-border: #ff7a4e2e;
+  --c-underline: #28d2236f;
+  --c-border: #28d2232e;
 }
 
 @font-face {

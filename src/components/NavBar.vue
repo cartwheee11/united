@@ -5,7 +5,7 @@
         <div class="container nav-bar-inner-wrapper">
           <button @click="onBurgerClick" class="burger">
             <img
-              src="https://img.icons8.com/material-outlined/24/ec5a59/menu--v1.png"
+              src="https://img.icons8.com/material-outlined/24/28d223/menu--v1.png"
             />
           </button>
           <router-link class="logo-link" to="/">
@@ -39,7 +39,7 @@
             <a href="#">{{ $store.state.user.guildProfile?.nick }}</a>
             <button class="log-out-button" @click="logOut">
               <img
-                src="https://img.icons8.com/fluency-systems-filled/48/ff7b4e/exit.png"
+                src="https://img.icons8.com/fluency-systems-filled/48/28d223/exit.png"
               />
             </button>
           </div>
@@ -201,7 +201,7 @@
     align-items: center;
     display: flex;
     background-color: var(--c-body);
-    border-bottom: 1px var(--c-border) solid;
+    /* border-bottom: 1px var(--c-border) solid; */
     transition: 0.2s;
     height: 50px;
 
@@ -260,7 +260,7 @@
     width: 100%;
     padding-top: 20px;
     padding-bottom: 20px;
-    border-bottom: 1px var(--c-border) solid;
+    /* border-bottom: 1px var(--c-border) solid; */
     top: 0;
     background-color: var(--c-body);
     /* height: 80px; */

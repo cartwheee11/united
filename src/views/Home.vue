@@ -58,7 +58,7 @@
               <div class="player-container-text">
                 <h3>
                   {{
-                    player.guildProfile.nick.slice(
+                    player.guildProfile.nick?.slice(
                       0,
                       player.guildProfile.nick.indexOf("|")
                     )
@@ -174,19 +174,30 @@
       </div>
 
       <div class="tutorials-section container">
-        <router-link to="/tutorials"><h2>Руководства</h2></router-link>
-        <div v-if="!tutorials.length" class="slider-loading">
-          <Spinner />
-        </div>
-        <!-- <div class="tutorials grid"> -->
-        <Feed :routeBase="'/tutorials'" :publications="tutorials" />
+        <div class="">
+          <h2><router-link to="/tutorials">Руководства</router-link></h2>
+          <div v-if="!tutorials.length" class="slider-loading">
+            <Spinner />
+          </div>
+          <!-- <div class="tutorials grid"> -->
+          <Feed
+            :firstItemGrow="true"
+            :routeBase="'/tutorials'"
+            :publications="tutorials"
+          />
 
-        <br /><br />
-        <router-link
-          to="/tutorials"
-          style="width: 100%; display: block; border: none; text-align: center"
-          ><button>Показать еще</button></router-link
-        >
+          <br /><br />
+          <router-link
+            to="/tutorials"
+            style="
+              width: 100%;
+              display: block;
+              border: none;
+              text-align: center;
+            "
+            ><button>Показать еще</button></router-link
+          >
+        </div>
       </div>
     </div>
   </div>
@@ -369,15 +380,29 @@
   }
 
   .tutorials-section {
-    margin-top: 100px;
-    /* background: white; */
-    /* border-radius: 50px; */
-    /* padding: 50px; */
+    padding: 0 120px;
+    margin-top: 30px;
+    background-color: var(--c-block);
+    border-radius: 50px;
+    padding-top: 1px;
+    width: 80%;
+    padding-bottom: 80px;
+    background: rgb(243, 244, 248);
+    background: linear-gradient(
+      180deg,
+      rgba(243, 244, 248, 0) 0%,
+      rgba(243, 244, 248, 0.6412852112676056) 11%,
+      rgba(243, 244, 248, 1) 88%
+    );
   }
 
   .tutorials-section h2 {
     /* text-align: center; */
-    margin-bottom: 30px;
+    font-size: 80px;
+    /* color: var(--c-accent); */
+    /* text-align: center; */
+    margin-top: 80px;
+    margin-bottom: 80px;
     /* margin-top: 10px; */
   }
 
@@ -390,11 +415,6 @@
 
   .tutorials-section .grid h3 {
     margin-top: 25px;
-  }
-
-  .tutorials-section .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
   }
 
   .tutorials-swiper {
@@ -428,16 +448,6 @@
   .title-section button {
     margin-top: 30px;
     border-radius: 1000px;
-    /* background-color: var(--с-accent-dark); */
-    background: none;
-    color: white;
-    /* color: var(--c-accent); */
-    background-color: var(--c-accent);
-    /* border: 1px solid var(--c-accent); */
-  }
-
-  .title-section button:hover {
-    /* background: rgb(81, 74, 74); */
   }
 
   .title-text {
@@ -583,6 +593,16 @@
   }
 
   @media screen and (max-width: 1300px) {
+    .tutorials-section h2 {
+      font-size: 55px;
+      margin-bottom: 50px;
+    }
+
+    .tutorials-section {
+      padding: 1px 90px;
+      padding-bottom: 50px;
+    }
+
     .container {
       max-width: 1150px;
     }
@@ -602,6 +622,12 @@
       text-align: center;
       margin-top: 60px;
       margin-bottom: 60px;
+    }
+
+    .tutorials-section {
+      width: 90%;
+      padding: 1px 50px;
+      padding-bottom: 50px;
     }
 
     .tutorials-section .grid {
@@ -625,6 +651,19 @@
   }
 
   @media screen and (max-width: 600px) {
+    .tutorials-section {
+      background: none;
+
+      padding: 20px;
+      width: 100%;
+    }
+
+    .tutorials-section h2 {
+      font-size: 35px;
+      margin-bottom: 40px;
+      /* background-color: #fff; */
+    }
+
     .player-container img {
       width: 70px;
     }

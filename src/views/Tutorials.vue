@@ -2,6 +2,7 @@
   <div class="main-wrapper container">
     <div class="feed-wrapper">
       <Feed
+        :first-item-grow="false"
         :route-base="'/tutorials'"
         v-if="tutorials.length"
         :publications="tutorials"
@@ -31,9 +32,15 @@
 
     <div class="controls-wrapper text-block">
       <div class="controls">
-        <!-- <h3>Фильтр (в разработке)</h3> -->
+        <h3>Поиск</h3>
+        <br />
         <p style="margin-top: 0">
-          <input type="text" placeholder="Поиск" style="width: 100%" />
+          <input
+            class="search"
+            type="text"
+            placeholder="Поиск"
+            style="width: 100%"
+          />
         </p>
         <p v-if="tags.length" class="tags">
           <span v-for="tag in tags" :key="tag"
@@ -144,6 +151,7 @@
 
 <style scoped>
   .main-wrapper {
+    padding: 0 100px;
     display: flex;
     gap: 20px;
     margin-top: 50px;
@@ -151,10 +159,12 @@
     min-height: 100%;
     width: 100%;
     flex-grow: 1;
+    flex-wrap: wrap;
   }
 
   .feed-wrapper {
     width: 100%;
+    order: 2;
     /* height: 100%; */
     /* text-align: center; */
   }
@@ -174,36 +184,49 @@
   }
 
   .controls-wrapper {
-    width: 40%;
+    order: 1;
+    width: 100%;
+    /* margin-bottom: 20px; */
+    margin: 30px 0;
+    padding-bottom: 20px;
+    /* width: 40%; */
   }
 
   .controls {
-    /* min-height: 300px; */
-    /* box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2); */
-    border-top: 5px solid var(--c-accent);
+    /* border-top: 5px solid var(--c-accent); */
     /* border: 1px solid var(--c-border); */
-    padding: 20px;
-    /* border-radius: 10px; */
-    background: white;
+    /* padding: 20px; */
+    border-radius: 10px;
+    /* background: #f5f6f9; */
+    text-align: center;
   }
 
   .controls-wrapper h3 {
     margin-top: 0;
   }
 
+  .search {
+    max-width: 800px;
+  }
+
+  .tags {
+    text-align: center;
+  }
+
   .tag {
     white-space: nowrap;
     height: auto;
-    color: var(--c-accent);
-    border: 1px var(--c-border) solid;
+    color: black;
+    /* border: 1px var(--c-border) solid; */
     padding: 3px 10px;
     border-radius: 100px;
     margin-right: 5px;
     /* display: inline-block; */
+
     margin-bottom: 5px;
     /* word-break: keep-all; */
-    /* background-color: none; */
-    background: none;
+    background-color: var(--c-block);
+    text-align: center;
   }
 
   .active-tag {
@@ -235,8 +258,14 @@
 
   @media screen and (max-width: 850px) {
     .main-wrapper {
+      padding: 0 20px;
       flex-wrap: wrap;
       margin-top: 20px;
+    }
+
+    button,
+    input[type="text"] {
+      height: 50px;
     }
 
     .feed-wrapper {
@@ -266,7 +295,6 @@
     .controls-wrapper {
       order: 1;
       width: 100%;
-      /* margin-bottom: 20px; */
       padding-bottom: 20px;
     }
   }

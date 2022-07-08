@@ -55,13 +55,20 @@
   button,
   input {
     /* border-radius: 10px; */
-    height: 50px;
+    height: 60px;
   }
 
   input[type="text"] {
-    border: 1px solid var(--c-border);
+    /* border: 3px solid var(--c-accent); */
     border-radius: 10px;
-    background: none;
+    padding: 0 22px;
+
+    /* background-color: #fff; */
+    background: var(--c-block);
+  }
+
+  .big-input {
+    height: 70px;
   }
 
   button {
@@ -98,7 +105,7 @@
   }
 
   button:hover {
-    background-color: #f27b7b;
+    background-color: var(--c-hover);
   }
 
   .container {
@@ -129,8 +136,9 @@
     margin: 0 auto;
     margin-top: 20px;
     margin-bottom: 20px;
-    border-radius: 0px;
-    border-top: 5px solid var(--c-accent);
+    border-radius: 10px;
+    box-shadow: 0 1px 6px 0 #0002;
+    /* border: 1px solid var(--c-accent); */
     background: white;
   }
 
@@ -150,6 +158,12 @@
 
     h3 {
       font-size: 28px;
+    }
+
+    @media screen and (max-width: 400px) {
+      .info-block {
+        padding: 15px;
+      }
     }
   }
 </style>

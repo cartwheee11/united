@@ -1,13 +1,15 @@
 <template>
   <div>
-    <div class="feed-grid">
+    <div class="feed-grid" :class="{ 'first-item-grow': firstItemGrow }">
       <router-link
         :to="routeBase + '/' + item.id"
         @click="$emit('item-click', i)"
         v-for="(item, i) in publications"
         :key="item"
         class="feed-item"
-        :class="!item.imageUrl ? 'feed-item-with-no-image' : ''"
+        :class="{
+          'feed-item-width-no-image': !item.imageUrl,
+        }"
       >
         <div class="feed-item-inner-wrapper">
           <img :src="item.imageUrl" alt="" />
@@ -57,15 +59,15 @@
         default: new Array(),
       },
 
+      firstItemGrow: {
+        trype: Boolean,
+        required: false,
+        default: true,
+      },
+
       routeBase: {
         type: String,
         reqiured: false,
-      },
-
-      bigFirstOne: {
-        type: Boolean,
-        required: false,
-        default: true,
       },
     },
   };
@@ -88,11 +90,11 @@
     /* margin-bottom: 50px; */
   }
 
-  .feed-item:first-child {
+  .first-item-grow .feed-item:first-child {
     grid-column-start: span 2;
   }
 
-  .feed-item:first-child h3 {
+  .first-item-grow .feed-item:first-child h3 {
     /* font-size: 35px; */
   }
 
@@ -139,7 +141,7 @@
       grid-template-columns: 1fr;
     }
 
-    .feed-item:first-child {
+    .first-item-grow .feed-item:first-child {
       grid-column-start: span 1;
     }
   }
