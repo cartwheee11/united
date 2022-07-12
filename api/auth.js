@@ -1,7 +1,7 @@
 const fetch = require("node-fetch");
 const config = require("./config.json");
 const fauna = require("faunadb");
-const db = require("./getDb.js");
+const db = require("../api-service/getDb");
 const Jimp = require("jimp");
 const bcrypt = require("bcrypt");
 

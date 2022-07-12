@@ -1,8 +1,8 @@
-const db = require("../../getDb");
+const db = require("../../../api-service/getDb");
 const fauna = require("faunadb");
 const config = require("../../config.json");
 const q = fauna.query;
-const getUser = require("../../service/getUserByIdFromDb.js");
+const getUser = require("../../../api-service/getUserByIdFromDb.js");
 const bcrypt = require("bcrypt");
 
 export default async function (req, res) {

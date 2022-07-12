@@ -1,7 +1,6 @@
-const db = require("../getDb.js");
+const db = require("../../api-service/getDb.js");
 const fauna = require("faunadb");
-const fetch = require("node-fetch");
-const getGuildUser = require("../service/getGuildUser.js");
+const getGuildUser = require("../../api-service/getGuildUser.js");
 const config = require("../config.json");
 const cr = require("crypto");
 

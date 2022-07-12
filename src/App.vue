@@ -91,9 +91,22 @@
     margin: 0;
   }
 
-  p,
-  span {
+  p {
     font-family: helvetica;
+  }
+
+  textarea {
+    background-color: var(--c-block);
+  }
+
+  textarea:hover {
+    background-color: var(--c-block);
+  }
+
+  hr {
+    border: none;
+    border-bottom: 3px solid var(--c-block);
+    opacity: 1;
   }
 
   a {

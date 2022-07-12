@@ -56,12 +56,4 @@
     flex-direction: column;
     vertical-align: middle;
   }
-
-  /* .readable-container {
-    padding: 50px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-  } */
 </style>

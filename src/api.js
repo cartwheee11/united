@@ -98,13 +98,16 @@ export async function publicate({
 export async function getTutorials(params = {}) {
   const after = params.after;
   const size = params.size;
-  const userId = params.userId;
+  const tags = params.tags;
+  const search = params.search;
+
+  console.log(search, tags);
 
   let result = await fetch(
     process.env.VUE_APP_API_URL + "/publications/tutorials/get",
     {
       method: "POST",
-      body: JSON.stringify({ after, size, userId }),
+      body: JSON.stringify({ after, size, search, tags }),
     }
   );
   let json = await result.json();

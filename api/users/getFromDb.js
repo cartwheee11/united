@@ -1,4 +1,4 @@
-const db = require("../getDb");
+const db = require("../../api-service/getDb");
 const fauna = require("faunadb");
 const q = fauna.query;
 

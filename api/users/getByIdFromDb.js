@@ -1,4 +1,4 @@
-const getUser = require("../service/getUserByIdFromDb");
+const getUser = require("../../api-service/getUserByIdFromDb");
 
 export default async function (req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");

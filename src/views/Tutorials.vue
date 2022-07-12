@@ -17,7 +17,7 @@
       <button
         class="download-more-button"
         v-if="tutorialsAfter && !buttonLoading"
-        @click="getTutorials"
+        @click="loadTutorials"
       >
         Загрузить еще
       </button>
@@ -36,6 +36,7 @@
         <br />
         <p style="margin-top: 0">
           <input
+            v-model="search"
             class="search"
             type="text"
             placeholder="Поиск"
@@ -81,6 +82,7 @@
         buttonLoading: false,
         tags: new Set(),
         activeTags: new Set(),
+        search: "asd",
         showError: false,
       };
     },
@@ -92,7 +94,7 @@
     },
 
     mounted() {
-      this.getTutorials();
+      this.loadTutorials();
       api.getTutorialsTags().then((result) => {
         let array = result.data;
         this.tags = array.map((elem) => elem.data.name);
@@ -106,15 +108,21 @@
         } else {
           this.activeTags.add(tag);
         }
+
+        this.tutorialsAfter = null;
+        this.tutorials = [];
+        this.loadTutorials();
       },
 
-      getTutorials() {
+      loadTutorials() {
         this.buttonLoading = true;
         api
           .getTutorials({
             size: 5,
             after: this.tutorialsAfter ? this.tutorialsAfter : undefined,
             userId: this.$store.state.user?.id,
+            search: this.search,
+            tags: Array.from(this.activeTags),
           })
           .then((res) => {
             if (res) {
@@ -132,13 +140,10 @@
               );
 
               this.tutorials.forEach(async (elem) => {
-                // elem.authorName = await author
-                // let name = await api.getUser
                 let user = await api.getUserByIdFromDb(elem.author);
                 user = user.data[0].data;
                 elem.name = user.guildProfile.nick;
                 elem.avatar = user.profile.avatar;
-                // elem.authorId = user.profile.id;
               });
             } else {
               this.showError = true;

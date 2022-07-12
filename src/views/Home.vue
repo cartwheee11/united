@@ -19,7 +19,11 @@
           Вступай в наши ряды, если готов :з
         </p>
         <br /> -->
-          <p><button>Попроситься</button></p>
+          <p>
+            <router-link style="border: none" to="/submit"
+              ><button>Попроситься</button></router-link
+            >
+          </p>
         </div>
       </div>
 
@@ -272,7 +276,6 @@
 
     mounted() {
       window.addEventListener("resize", this.onResize);
-      // this.roles = require('./config.json')
       this.startHeartAnimation();
       api.getUsersFromDb().then((res) => {
         this.players = res.data.map((elem) => elem.data);
@@ -283,28 +286,18 @@
         .then(async (res) => {
           this.tutorials = res.data.map((elem) => {
             elem.data.id = elem.ref["@ref"].id;
-            // console.log(elem.data);
             return elem.data;
           });
           console.log(this.tutorials);
 
           this.tutorials.forEach(async (elem) => {
-            // elem.authorName = await author
-            // let name = await api.getUser
             let user = await api.getUserByIdFromDb(elem.author);
             user = user.data[0].data;
             elem.name = user.guildProfile.nick;
             elem.avatar = user.profile.avatar;
-
-            // console.log(elem.avatar);
-            // elem.authorId = user.profile.id;
           });
         });
 
-      // api.gallery.getImages().then((res) => {
-      // this.gallery = res.data.map((elem) => elem.data);
-      // console.log(this.gallery);
-      // });
       this.$refs.galleryPreviewBigImage.onload = () => {
         this.adaptGalleryPreviewContainer();
       };
