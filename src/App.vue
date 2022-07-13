@@ -143,6 +143,14 @@
     background-color: orange !important;
   }
 
+  button:disabled {
+    opacity: 0.5;
+  }
+
+  input:disabled {
+    opacity: 0.5;
+  }
+
   .info-block {
     border-radius: 10px;
     padding: 50px;

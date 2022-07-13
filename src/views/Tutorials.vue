@@ -1,29 +1,30 @@
 <template>
   <div class="main-wrapper container">
     <div class="feed-wrapper">
+      <div
+        v-if="isEmptySearch"
+        class="readable-container"
+        style="text-align: center"
+      >
+        <p>Поиск не дал результата :(</p>
+      </div>
       <Feed
         :first-item-grow="false"
         :route-base="'/tutorials'"
         v-if="tutorials.length"
         :publications="tutorials"
       />
-      <div v-else-if="showError" class="error">
-        <p>
-          Недостаточно прав: чтобы просматривать руководства, нужно войти в
-          систему и иметь ранг от «рекрута»
-        </p>
-      </div>
-      <spiner v-else />
+      <spiner v-else-if="isContentLoading" />
       <button
         class="download-more-button"
-        v-if="tutorialsAfter && !buttonLoading"
+        v-if="tutorialsAfter && !isContentLoading"
         @click="loadTutorials"
       >
         Загрузить еще
       </button>
 
       <div
-        v-if="tutorialsAfter && buttonLoading"
+        v-if="tutorialsAfter && isContentLoading"
         class="download-more-spinner-wrapper"
       >
         <spiner />
@@ -36,23 +37,26 @@
         <br />
         <p style="margin-top: 0">
           <input
+            :disabled="isInputBlocked"
             v-model="search"
             class="search"
             type="text"
+            @keypress.enter="reloadTutorials"
             placeholder="Поиск"
             style="width: 100%"
           />
         </p>
         <p v-if="tags.length" class="tags">
-          <span v-for="tag in tags" :key="tag"
-            ><button
+          <span v-for="tag in tags" :key="tag">
+            <button
+              :disabled="isInputBlocked"
               @click="onTagClick(tag)"
               class="tag"
               :class="activeTags.has(tag) ? 'active-tag' : ''"
             >
               {{ tag }}
-            </button></span
-          >
+            </button>
+          </span>
         </p>
         <!-- <p v-else><Spiner /><br /></p> -->
 
@@ -78,11 +82,13 @@
     data() {
       return {
         tutorials: [],
+        isEmptySearch: false,
         tutorialsAfter: null,
-        buttonLoading: false,
+        isContentLoading: true,
+        isInputBlocked: true,
         tags: new Set(),
         activeTags: new Set(),
-        search: "asd",
+        search: "",
         showError: false,
       };
     },
@@ -109,13 +115,19 @@
           this.activeTags.add(tag);
         }
 
+        this.reloadTutorials();
+      },
+
+      reloadTutorials() {
         this.tutorialsAfter = null;
         this.tutorials = [];
         this.loadTutorials();
       },
 
       loadTutorials() {
-        this.buttonLoading = true;
+        this.isContentLoading = true;
+        this.isEmptySearch = false;
+        this.isInputBlocked = true;
         api
           .getTutorials({
             size: 5,
@@ -125,19 +137,24 @@
             tags: Array.from(this.activeTags),
           })
           .then((res) => {
+            this.isContentLoading = false;
+            this.isInputBlocked = false;
             if (res) {
               if (res.after) {
                 this.tutorialsAfter = res.after[0]["@ref"].id;
               } else {
                 this.tutorialsAfter = null;
               }
-              this.buttonLoading = false;
               this.tutorials = this.tutorials.concat(
                 res.data.map((elem) => {
                   elem.data.id = elem.ref["@ref"].id;
                   return elem.data;
                 })
               );
+
+              if (!res.data.length) {
+                this.isEmptySearch = true;
+              }
 
               this.tutorials.forEach(async (elem) => {
                 let user = await api.getUserByIdFromDb(elem.author);
@@ -148,6 +165,9 @@
             } else {
               this.showError = true;
             }
+          })
+          .catch(() => {
+            this.isContentLoading = false;
           });
       },
     },
