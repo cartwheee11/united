@@ -29,7 +29,7 @@ export default async function (req, res) {
   req.body = JSON.parse(req.body);
   let after = req.body.after;
   const size = req.body.size;
-  const search = req.body.search;
+  const search = req.body.search ? req.body.search : "";
   let tags = req.body.tags;
   if (!tags) {
     tags = [];

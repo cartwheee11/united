@@ -288,7 +288,6 @@
             elem.data.id = elem.ref["@ref"].id;
             return elem.data;
           });
-          console.log(this.tutorials);
 
           this.tutorials.forEach(async (elem) => {
             let user = await api.getUserByIdFromDb(elem.author);
@@ -307,8 +306,6 @@
       adaptGalleryPreviewContainer() {
         const container = this.$refs.galleryPreviewContainer;
         const image = this.$refs.galleryPreviewBigImage;
-
-        console.log(window.getComputedStyle(image).height);
 
         container.style.height = window.getComputedStyle(image).height;
       },

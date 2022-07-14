@@ -31,9 +31,7 @@
         fragment.get("access_token"),
         fragment.get("token_type"),
       ];
-      if (!accessToken) {
-        console.log("че-то пошло не так");
-      }
+
       api.auth(tokenType + " " + accessToken).then((res) => {
         if (res.username) {
           this.state = "success";
